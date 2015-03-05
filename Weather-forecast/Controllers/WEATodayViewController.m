@@ -75,7 +75,7 @@
     
     NSTimeInterval locationAge = -[location.timestamp timeIntervalSinceNow];
     if (locationAge > 5.0) return;
-    
+
     if (location.horizontalAccuracy < 0) return;
 
     
