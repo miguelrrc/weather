@@ -15,6 +15,7 @@
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
         </mutableArray>
         <mutableArray key="ProximaNova-Semibold.otf">
             <string>ProximaNova-Semibold</string>
@@ -63,7 +64,7 @@
                                             </mask>
                                         </variation>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lalala" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5mY-v3-9Uk">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5mY-v3-9Uk">
                                         <rect key="frame" x="65" y="216" width="191" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="ZJZ-P3-ePY"/>
@@ -407,13 +408,13 @@
                                     <mask key="constraints">
                                         <exclude reference="76g-bD-450"/>
                                         <exclude reference="XxM-Bz-SRn"/>
+                                        <exclude reference="lew-rg-Wd4"/>
                                         <exclude reference="Iw2-0Q-Mga"/>
                                         <exclude reference="MqW-DG-yaX"/>
                                         <exclude reference="OfH-0x-ymt"/>
                                         <exclude reference="eA8-sT-NvF"/>
                                         <exclude reference="fdB-BT-2Dx"/>
                                         <exclude reference="iTR-tp-CMJ"/>
-                                        <exclude reference="lew-rg-Wd4"/>
                                         <exclude reference="9Xu-Te-s0h"/>
                                         <exclude reference="RDi-kd-3i9"/>
                                         <exclude reference="iDz-ya-zFu"/>
@@ -430,23 +431,23 @@
                                         <exclude reference="f1O-Dd-L9p"/>
                                         <exclude reference="Y6S-qH-rTO"/>
                                         <exclude reference="z9r-de-R5s"/>
-                                        <exclude reference="6aZ-zE-odj"/>
-                                        <exclude reference="9Kh-1M-X2S"/>
                                         <exclude reference="1wq-zO-T75"/>
                                         <exclude reference="XE9-uM-KeI"/>
                                         <exclude reference="s8q-Dl-3yh"/>
+                                        <exclude reference="6aZ-zE-odj"/>
+                                        <exclude reference="9Kh-1M-X2S"/>
+                                        <exclude reference="Jgi-xR-TDe"/>
+                                        <exclude reference="beW-XY-6OK"/>
                                         <exclude reference="8Qz-y2-c8y"/>
                                         <exclude reference="cIC-fq-eR0"/>
                                         <exclude reference="e8I-1k-coB"/>
-                                        <exclude reference="Jgi-xR-TDe"/>
-                                        <exclude reference="beW-XY-6OK"/>
                                         <exclude reference="Mdc-Bk-13V"/>
                                         <exclude reference="X0n-fG-V9y"/>
+                                        <exclude reference="hF9-Yk-arF"/>
+                                        <exclude reference="heZ-ZS-OWS"/>
                                         <exclude reference="10v-Bd-yeb"/>
                                         <exclude reference="bxp-Ka-w3a"/>
                                         <exclude reference="luv-75-vdo"/>
-                                        <exclude reference="hF9-Yk-arF"/>
-                                        <exclude reference="heZ-ZS-OWS"/>
                                         <exclude reference="QG0-Us-Jen"/>
                                         <exclude reference="RWW-jk-BSg"/>
                                         <exclude reference="kLJ-HU-E2U"/>
@@ -475,13 +476,13 @@
                                     <mask key="constraints">
                                         <include reference="76g-bD-450"/>
                                         <include reference="XxM-Bz-SRn"/>
+                                        <include reference="lew-rg-Wd4"/>
                                         <include reference="Iw2-0Q-Mga"/>
                                         <exclude reference="MqW-DG-yaX"/>
                                         <exclude reference="OfH-0x-ymt"/>
                                         <exclude reference="eA8-sT-NvF"/>
                                         <exclude reference="fdB-BT-2Dx"/>
                                         <include reference="iTR-tp-CMJ"/>
-                                        <include reference="lew-rg-Wd4"/>
                                         <include reference="9Xu-Te-s0h"/>
                                         <include reference="RDi-kd-3i9"/>
                                         <include reference="iDz-ya-zFu"/>
@@ -498,23 +499,23 @@
                                         <include reference="f1O-Dd-L9p"/>
                                         <exclude reference="Y6S-qH-rTO"/>
                                         <include reference="z9r-de-R5s"/>
-                                        <include reference="6aZ-zE-odj"/>
-                                        <include reference="9Kh-1M-X2S"/>
                                         <include reference="1wq-zO-T75"/>
                                         <include reference="XE9-uM-KeI"/>
                                         <include reference="s8q-Dl-3yh"/>
+                                        <include reference="6aZ-zE-odj"/>
+                                        <include reference="9Kh-1M-X2S"/>
+                                        <exclude reference="Jgi-xR-TDe"/>
+                                        <include reference="beW-XY-6OK"/>
                                         <include reference="8Qz-y2-c8y"/>
                                         <exclude reference="cIC-fq-eR0"/>
                                         <include reference="e8I-1k-coB"/>
-                                        <exclude reference="Jgi-xR-TDe"/>
-                                        <include reference="beW-XY-6OK"/>
                                         <include reference="Mdc-Bk-13V"/>
                                         <include reference="X0n-fG-V9y"/>
+                                        <include reference="hF9-Yk-arF"/>
+                                        <include reference="heZ-ZS-OWS"/>
                                         <include reference="10v-Bd-yeb"/>
                                         <include reference="bxp-Ka-w3a"/>
                                         <exclude reference="luv-75-vdo"/>
-                                        <include reference="hF9-Yk-arF"/>
-                                        <include reference="heZ-ZS-OWS"/>
                                         <include reference="QG0-Us-Jen"/>
                                         <include reference="RWW-jk-BSg"/>
                                         <exclude reference="kLJ-HU-E2U"/>
@@ -634,7 +635,7 @@
                                                 </mask>
                                             </variation>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="blabla" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qEx-N2-rot">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qEx-N2-rot">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="ii9-2j-gcw"/>
@@ -715,20 +716,20 @@
                                             <exclude reference="GVl-ju-JbI"/>
                                         </mask>
                                         <mask key="constraints">
+                                            <exclude reference="SKD-x2-AIm"/>
+                                            <exclude reference="ovx-XH-b9d"/>
+                                            <exclude reference="LQ5-BN-hzD"/>
+                                            <exclude reference="QxH-Y5-i4L"/>
+                                            <exclude reference="c0V-gd-3Zx"/>
+                                            <exclude reference="Qty-4k-xqg"/>
+                                            <exclude reference="VgR-nu-RI5"/>
+                                            <exclude reference="1tT-Tv-sOb"/>
+                                            <exclude reference="BFU-6z-I2M"/>
                                             <exclude reference="6na-d1-i1c"/>
                                             <exclude reference="8yE-QH-tzN"/>
                                             <exclude reference="IwA-yM-KvY"/>
                                             <exclude reference="fq4-l7-f1i"/>
                                             <exclude reference="xNc-tu-1bu"/>
-                                            <exclude reference="Qty-4k-xqg"/>
-                                            <exclude reference="VgR-nu-RI5"/>
-                                            <exclude reference="SKD-x2-AIm"/>
-                                            <exclude reference="ovx-XH-b9d"/>
-                                            <exclude reference="1tT-Tv-sOb"/>
-                                            <exclude reference="BFU-6z-I2M"/>
-                                            <exclude reference="LQ5-BN-hzD"/>
-                                            <exclude reference="QxH-Y5-i4L"/>
-                                            <exclude reference="c0V-gd-3Zx"/>
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact">
@@ -740,20 +741,20 @@
                                             <include reference="GVl-ju-JbI"/>
                                         </mask>
                                         <mask key="constraints">
+                                            <include reference="SKD-x2-AIm"/>
+                                            <include reference="ovx-XH-b9d"/>
+                                            <include reference="LQ5-BN-hzD"/>
+                                            <include reference="QxH-Y5-i4L"/>
+                                            <exclude reference="c0V-gd-3Zx"/>
+                                            <include reference="Qty-4k-xqg"/>
+                                            <include reference="VgR-nu-RI5"/>
+                                            <include reference="1tT-Tv-sOb"/>
+                                            <include reference="BFU-6z-I2M"/>
                                             <exclude reference="6na-d1-i1c"/>
                                             <include reference="8yE-QH-tzN"/>
                                             <include reference="IwA-yM-KvY"/>
                                             <include reference="fq4-l7-f1i"/>
                                             <exclude reference="xNc-tu-1bu"/>
-                                            <include reference="Qty-4k-xqg"/>
-                                            <include reference="VgR-nu-RI5"/>
-                                            <include reference="SKD-x2-AIm"/>
-                                            <include reference="ovx-XH-b9d"/>
-                                            <include reference="1tT-Tv-sOb"/>
-                                            <include reference="BFU-6z-I2M"/>
-                                            <include reference="LQ5-BN-hzD"/>
-                                            <include reference="QxH-Y5-i4L"/>
-                                            <exclude reference="c0V-gd-3Zx"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
@@ -948,18 +949,18 @@
                                             <exclude reference="IxC-Y7-tkt"/>
                                         </mask>
                                         <mask key="constraints">
+                                            <exclude reference="LcO-Uq-jbT"/>
+                                            <exclude reference="MwA-Pd-1Nh"/>
+                                            <exclude reference="p7R-vN-xzc"/>
+                                            <exclude reference="BT8-Wi-KM8"/>
+                                            <exclude reference="nEE-3E-ZKq"/>
+                                            <exclude reference="6hL-jm-MrR"/>
+                                            <exclude reference="wOE-Y2-OeD"/>
                                             <exclude reference="5gd-Aq-nLi"/>
                                             <exclude reference="Opd-rk-Adx"/>
                                             <exclude reference="Znc-aC-1bN"/>
                                             <exclude reference="fJs-E2-e4p"/>
                                             <exclude reference="xaD-59-bDD"/>
-                                            <exclude reference="6hL-jm-MrR"/>
-                                            <exclude reference="wOE-Y2-OeD"/>
-                                            <exclude reference="BT8-Wi-KM8"/>
-                                            <exclude reference="nEE-3E-ZKq"/>
-                                            <exclude reference="LcO-Uq-jbT"/>
-                                            <exclude reference="MwA-Pd-1Nh"/>
-                                            <exclude reference="p7R-vN-xzc"/>
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact">
@@ -970,18 +971,18 @@
                                             <include reference="IxC-Y7-tkt"/>
                                         </mask>
                                         <mask key="constraints">
+                                            <include reference="LcO-Uq-jbT"/>
+                                            <exclude reference="MwA-Pd-1Nh"/>
+                                            <include reference="p7R-vN-xzc"/>
+                                            <include reference="BT8-Wi-KM8"/>
+                                            <include reference="nEE-3E-ZKq"/>
+                                            <include reference="6hL-jm-MrR"/>
+                                            <include reference="wOE-Y2-OeD"/>
                                             <include reference="5gd-Aq-nLi"/>
                                             <include reference="Opd-rk-Adx"/>
                                             <exclude reference="Znc-aC-1bN"/>
                                             <include reference="fJs-E2-e4p"/>
                                             <exclude reference="xaD-59-bDD"/>
-                                            <include reference="6hL-jm-MrR"/>
-                                            <include reference="wOE-Y2-OeD"/>
-                                            <include reference="BT8-Wi-KM8"/>
-                                            <include reference="nEE-3E-ZKq"/>
-                                            <include reference="LcO-Uq-jbT"/>
-                                            <exclude reference="MwA-Pd-1Nh"/>
-                                            <include reference="p7R-vN-xzc"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
@@ -1097,88 +1098,87 @@
         <scene sceneID="CnF-vm-ihW">
             <objects>
                 <tableViewController id="pDC-e4-jZs" customClass="WEAGeneralSettingsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="gR1-Z1-QaS">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="gR1-Z1-QaS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <sections>
-                            <tableViewSection id="1iQ-fy-15d">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="o19-pN-mSn" rowHeight="47" style="IBUITableViewCellStyleDefault" id="0cx-wf-W0Z">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0cx-wf-W0Z" id="x1l-43-1k6">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="o19-pN-mSn">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact">
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    </variation>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="xBB-dn-Xjk" detailTextLabel="jPb-7l-JMj" style="IBUITableViewCellStyleValue1" id="6Ws-N8-uWI">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Ws-N8-uWI" id="OBU-pC-lF8">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Unit of lenght" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xBB-dn-Xjk">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
-                                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Meters" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jPb-7l-JMj">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
-                                                    <color key="textColor" red="0.1843137255" green="0.56862745100000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact">
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    </variation>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="KPQ-mZ-glr" detailTextLabel="7mU-n8-Oa9" style="IBUITableViewCellStyleValue1" id="7oK-SI-whN">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7oK-SI-whN" id="Q5y-Hy-epK">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Units of temperature" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KPQ-mZ-glr">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
-                                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Celsius" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7mU-n8-Oa9">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
-                                                    <color key="textColor" red="0.1843137255" green="0.56862745100000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact">
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    </variation>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellSettings" textLabel="xBB-dn-Xjk" detailTextLabel="jPb-7l-JMj" style="IBUITableViewCellStyleValue1" id="6Ws-N8-uWI">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Ws-N8-uWI" id="OBU-pC-lF8">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xBB-dn-Xjk">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
+                                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jPb-7l-JMj">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
+                                            <color key="textColor" red="0.1843137255" green="0.56862745100000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            </variation>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
                         <connections>
                             <outlet property="dataSource" destination="pDC-e4-jZs" id="Uuy-2j-R9E"/>
                             <outlet property="delegate" destination="pDC-e4-jZs" id="0ll-Cg-MIP"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="GKE-Q4-cel"/>
+                    <connections>
+                        <segue destination="ble-eS-ARy" kind="show" identifier="segueToChooseLength" id="251-Qh-e5P"/>
+                        <segue destination="ble-eS-ARy" kind="show" identifier="segueToChooseTemperature" id="dHE-w0-9Jw"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nxe-fT-vWj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2719.5" y="1743.75"/>
+        </scene>
+        <!--Choose Settings Table View Controller-->
+        <scene sceneID="Hsl-eg-lOQ">
+            <objects>
+                <tableViewController id="ble-eS-ARy" customClass="WEAChooseSettingsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ink-At-jCU">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellChooseSettingOption" textLabel="UQF-jW-ion" style="IBUITableViewCellStyleDefault" id="75b-dj-5fh">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="75b-dj-5fh" id="dbe-35-qdF">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UQF-jW-ion">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            </variation>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ble-eS-ARy" id="Mg0-7b-dHu"/>
+                            <outlet property="delegate" destination="ble-eS-ARy" id="Ygk-p2-y6q"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y7V-gV-GAZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3544.5" y="1743.75"/>
         </scene>
     </scenes>
     <resources>
@@ -1196,6 +1196,7 @@
         <image name="Today-Wind" width="25" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="QwO-cS-fZS"/>
+        <segue reference="oNV-gr-ViT"/>
+        <segue reference="dHE-w0-9Jw"/>
     </inferredMetricsTieBreakers>
 </document>

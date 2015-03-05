@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-@import CoreLocation;
+#import "MyLocationManager.h"
 
-@interface WEATodayViewController : UIViewController<CLLocationManagerDelegate>
+@interface WEATodayViewController : UIViewController<MyLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *viewCentered;
 @property (weak, nonatomic) IBOutlet UIImageView *imgWeatherDesc;

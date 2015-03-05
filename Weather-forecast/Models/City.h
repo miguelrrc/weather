@@ -8,7 +8,7 @@
 
 #import "JSONModel.h"
 #import "Weather.h"
-
+#import "Forecast.h"
 @interface City : JSONModel
 
 @property (strong, nonatomic) NSString* areaName;

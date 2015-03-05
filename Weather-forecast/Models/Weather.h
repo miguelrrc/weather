@@ -11,13 +11,13 @@
 #import "WeatherImage.h"
 @interface Weather : JSONModel
 
-@property (strong, nonatomic) NSNumber * temp_C;
-@property (strong, nonatomic) NSNumber * temp_F;
-@property (strong, nonatomic) NSNumber * windspeedMiles;
-@property (strong, nonatomic) NSNumber* windspeedKmph;
+@property (strong, nonatomic) NSString * temp_C;
+@property (strong, nonatomic) NSString * temp_F;
+@property (strong, nonatomic) NSString * windspeedMiles;
+@property (strong, nonatomic) NSString* windspeedKmph;
 @property (strong, nonatomic) NSString* winddir16Point;
-@property (strong, nonatomic) NSNumber* precipMM;
-@property (strong, nonatomic) NSNumber* pressure;
+@property (strong, nonatomic) NSString* precipMM;
+@property (strong, nonatomic) NSString* pressure;
 @property (strong, nonatomic) NSString* weatherDesc;
 @property (strong, nonatomic) NSString* weatherCode;
 @property (strong, nonatomic) NSString* chanceofrain;

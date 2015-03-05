@@ -34,6 +34,10 @@
     databasePath = [documentDir stringByAppendingPathComponent:databaseName];
     
     [self createAndCheckDatabase];
+    
+    
+//    TODO: Fix this
+    [self setupUserDefaultsByDefault];
     // Override point for customization after application launch.
     return YES;
 }
@@ -81,5 +85,11 @@
     
 }
 
+-(void) setupUserDefaultsByDefault{
+    
+    //By default 1 is Celsius and meters
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:1] forKey:@"LengthSettings"];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:1] forKey:@"TemperatureSettings"];
+}
 
 @end

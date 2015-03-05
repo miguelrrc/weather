@@ -18,3 +18,7 @@ NSString *const WEB_SERVICE_WEATHER_KEY = @"c7c4ed1ecb4f49ed85539d047fd14";
 
 //NSString *const WEB_SERVICE_SEARCH_CITY = @"http://api.worldweatheronline.com/";
 NSString *const WEB_SERVICE_SEARCH_CITY_V2_FREE =@"free/v2/search.ashx";
+
+
+//Forecast
+NSInteger const FORECAST_DAYS=5;

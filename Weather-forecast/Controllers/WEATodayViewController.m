@@ -9,10 +9,11 @@
 #import "WEATodayViewController.h"
 #import "WeatherClient.h"
 #import "MBProgressHUD.h"
+#import "Weather+Utilities.h"
 //TODO: Put it in category the next import
 #import "QuartzCore/QuartzCore.h"
+
 @interface WEATodayViewController ()
-@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end
 
@@ -25,63 +26,70 @@
     [super viewDidLoad];
     
     cityToday=[City new];
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.delegate = self;
-    // Check for iOS 7.
     
-    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-        [self.locationManager requestWhenInUseAuthorization];
+    //Get the singleton for Location
+    [[MyLocationManager sharedController]setDelegate:self];
+
+    // Check for iOS 7.
+    if ([[MyLocationManager sharedController].locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [[MyLocationManager sharedController].locationManager requestWhenInUseAuthorization];
     }
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(getMyLocation)
-                                                 name:UIApplicationWillEnterForegroundNotification
-                                               object:nil];
-    [self getMyLocation];
+   
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    [self getMyLocation];
+   [[MyLocationManager sharedController].locationManager startUpdatingLocation];//We do it here so it can get new data when user touch Item Button Today.
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
--(void)getMyLocation{
-  
-    
-    [self.locationManager startUpdatingLocation];
-}
+/**
+ * Populate the UI with data from the City
+ *@param city City From the WS
+ * @see WeatherClient
+ */
 -(void)populateController:(City *)city {
     
-    self.lblWeatherDescription.text=[NSString stringWithFormat:@"%@ | %@",city.weather.temp_C.stringValue,city.weather.weatherDesc];
-    self.lblWeatherPrecipMM.text=[NSString stringWithFormat:@"%@ mm",city.weather.precipMM.stringValue];
-    self.lblWeatherPressure.text=[NSString stringWithFormat:@"%@ hPa",city.weather.windspeedKmph.stringValue];
+    //We use a category to get the temperature based on the Settings from the user
+    self.lblWeatherDescription.text=[NSString stringWithFormat:@"%@ | %@",[city.weather getTemperatureBasedOnScale],city.weather.weatherDesc];
+    
+    self.lblWeatherPrecipMM.text=[NSString stringWithFormat:@"%@ mm",city.weather.precipMM];
+    self.lblWeatherPressure.text=[NSString stringWithFormat:@"%@ hPa",city.weather.pressure];
     self.lblWeatherChancePrecipMM.text=[NSString stringWithFormat:@"%@%%",city.weather.chanceofrain];
-    self.lblWeatherWindSpeed.text=[NSString stringWithFormat:@"%@ %@",city.weather.windspeedKmph.stringValue,@"Km/h"];
+    self.lblWeatherWindSpeed.text=[city.weather getLengthBasedOnScale];
     self.lblWindDirection.text=city.weather.winddir16Point;
     self.lblCityAndCountry.text=[NSString stringWithFormat:@"%@, %@",city.areaName,city.country];
     self.imgWeatherDesc.image=[UIImage imageNamed:[city.weather imageNameForBigIcon]];
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+/**
+ * Delegate from the singleton
+ *@param location new location
+ * @see MyLocationManagerDelegate
+ */
+- (void)locationControllerDidUpdateLocation:(CLLocation *)location
 {
-    // Last object contains the most recent location
-    CLLocation *newLocation = [locations lastObject];
     
-    NSTimeInterval locationAge = -[newLocation.timestamp timeIntervalSinceNow];
+    NSTimeInterval locationAge = -[location.timestamp timeIntervalSinceNow];
     if (locationAge > 5.0) return;
     
-    if (newLocation.horizontalAccuracy < 0) return;
+    if (location.horizontalAccuracy < 0) return;
 
     
-    [self.locationManager stopUpdatingLocation];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [[MyLocationManager sharedController].locationManager  stopUpdatingLocation];
+   
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];//Loading
+    
     WeatherClient *client=[WeatherClient weatherClientManager];
-    NSString *locationString=[NSString stringWithFormat:@" %f, %f",newLocation.coordinate.latitude,newLocation.coordinate.longitude];
+    
+    //Format for the parameter used in WeatherClient
+    NSString *locationString=[NSString stringWithFormat:@" %f, %f",location.coordinate.latitude,location.coordinate.longitude];
     
     [client getWeatherFromLocation:locationString numberOfDays:[NSNumber numberWithInt:1] city:^(City *city) {
-        if(city!=nil)
+        if(city!=nil)//We have a city
         {
             cityToday=city;
             
@@ -89,28 +97,44 @@
                                      @"longitude":city.longitude,
                                      @"areaName":city.areaName,
                                      @"country":city.country};
-            [[NSUserDefaults standardUserDefaults] setObject:dictCity forKey:@"MyCity"];
+            [[NSUserDefaults standardUserDefaults] setObject:dictCity forKey:@"MyCity"];//Save in defaults for others views in case we need it.
            
             NSLog(@"Ready to populate the controller");
             
             [self populateController:city];
+        }else
+        {
+            NSLog(@"Error retrieving the city");
+            //TODO: alert
         }
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];//Bye loading
     }];
     
 }
-- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:  (CLAuthorizationStatus)status
-{
 
-}
-
+/**
+ * Segue to Locations. It's the ony one
+ *@param segue 
+ *@param sender
+ * @see WEALocationTableViewController
+ */
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     UITableViewController *controller=segue.destinationViewController;
-    controller.hidesBottomBarWhenPushed=YES;
+    controller.hidesBottomBarWhenPushed=YES;//Hide the bottom bar
 }
+
+
+/**
+ * Share the view by email, facebook, twitter and message
+ * Create a image with the central view and add a small message
+ *@param sender not used
+ */
+
 - (IBAction)shareWeather:(id)sender {
     //Create the image
+    //TODO: integrate in a category
+    
     UIGraphicsBeginImageContext(self.viewCentered.frame.size);
     [[self.viewCentered layer] renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *screenshot = UIGraphicsGetImageFromCurrentImageContext();

@@ -78,7 +78,7 @@
 -(void)getLocations:(NSString*)cityBeginningWith cities:(void (^)(NSArray * cities))success{
     
     NSDictionary *params=@{@"key": WEB_SERVICE_WEATHER_KEY,
-                           @"q":@"New York",
+                           @"q":cityBeginningWith,
                            @"format":@"json"
                           };
     
@@ -138,7 +138,9 @@
         percentage+= f;
         
     }
-    percentage=percentage/arrChanceOfRain.count;
+    if(percentage>0)
+        percentage=percentage/arrChanceOfRain.count;
+    
     [dictWithValues setObject:[NSString stringWithFormat:@"%d",percentage] forKey:@"chanceofrain"];
     
     
