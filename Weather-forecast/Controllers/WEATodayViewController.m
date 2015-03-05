@@ -46,16 +46,16 @@
     
     [self.locationManager startUpdatingLocation];
 }
--(void)populateController:(Weather *)w {
+-(void)populateController:(City *)city {
     
-    self.lblWeatherDescription.text=[NSString stringWithFormat:@"%@ | %@",w.temp_C.stringValue,w.weatherDesc];
-    self.lblWeatherPrecipMM.text=[NSString stringWithFormat:@"%@ mm",w.precipMM.stringValue];
-    self.lblWeatherPressure.text=[NSString stringWithFormat:@"%@ hPa",w.windspeedKmph.stringValue];
-    self.lblWeatherChancePrecipMM.text=[NSString stringWithFormat:@"%@%%",w.chanceofrain];
-    self.lblWeatherWindSpeed.text=[NSString stringWithFormat:@"%@ %@",w.windspeedKmph.stringValue,@"Km/h"];
-    self.lblWindDirection.text=w.winddir16Point;
-    self.lblCityAndCountry.text=[NSString stringWithFormat:@"%@,%@",w.city.areaName,w.city.country];
-    self.imgWeatherDesc.image=[UIImage imageNamed:[w imageNameForBigIcon]];
+    self.lblWeatherDescription.text=[NSString stringWithFormat:@"%@ | %@",city.weather.temp_C.stringValue,city.weather.weatherDesc];
+    self.lblWeatherPrecipMM.text=[NSString stringWithFormat:@"%@ mm",city.weather.precipMM.stringValue];
+    self.lblWeatherPressure.text=[NSString stringWithFormat:@"%@ hPa",city.weather.windspeedKmph.stringValue];
+    self.lblWeatherChancePrecipMM.text=[NSString stringWithFormat:@"%@%%",city.weather.chanceofrain];
+    self.lblWeatherWindSpeed.text=[NSString stringWithFormat:@"%@ %@",city.weather.windspeedKmph.stringValue,@"Km/h"];
+    self.lblWindDirection.text=city.weather.winddir16Point;
+    self.lblCityAndCountry.text=[NSString stringWithFormat:@"%@,%@",city.areaName,city.country];
+    self.imgWeatherDesc.image=[UIImage imageNamed:[city.weather imageNameForBigIcon]];
 }
 /*
 #pragma mark - Navigation
@@ -82,11 +82,16 @@
     WeatherClient *client=[WeatherClient weatherClientManager];
     NSString *locationString=[NSString stringWithFormat:@" %f, %f",newLocation.coordinate.latitude,newLocation.coordinate.longitude];
     
-    [client getWeatherFromLocation:locationString weather:^(Weather *weather) {
-        if(weather!=nil)
+    [client getWeatherFromLocation:locationString numberOfDays:[NSNumber numberWithInt:1] city:^(City *city) {
+        if(city!=nil)
         {
+            NSDictionary *dictCity=@{@"latitude": city.latitude,
+                                     @"longitude":city.longitude,
+                                     @"areaName":city.areaName,
+                                     @"country":city.country};
+            [[NSUserDefaults standardUserDefaults] setObject:dictCity forKey:@"MyCity"];
             NSLog(@"Ready to populate the controller");
-            [self populateController:weather];
+            [self populateController:city];
         }
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     }];

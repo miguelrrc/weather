@@ -13,7 +13,10 @@
 @end
 
 @implementation AppDelegate
-
+{
+    NSString *databaseName;
+    NSString *databasePath;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     UIImage *line=[UIImage imageNamed:@"NLine"];
@@ -23,6 +26,14 @@
     [[UINavigationBar appearance]setBackgroundColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setShadowImage:[UIImage imageNamed:@"Line.png"]];
 
+    
+    databaseName = @"weather.sqlite";
+    
+    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDir = [documentPaths objectAtIndex:0];
+    databasePath = [documentDir stringByAppendingPathComponent:databaseName];
+    
+    [self createAndCheckDatabase];
     // Override point for customization after application launch.
     return YES;
 }
@@ -48,5 +59,27 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+-(void) createAndCheckDatabase
+{
+//    NSString * databaseName = @"epctracker.sqlite";
+    
+    //    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    //    NSString *documentDir = [documentPaths objectAtIndex:0];
+//    NSString *databasePathLocal = [self getDatabasePath];
+    BOOL success;
+    
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    success = [fileManager fileExistsAtPath:databasePath];
+    
+    if(success) return;
+    
+    NSString *databasePathFromApp = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:databaseName];
+    
+    success=[fileManager copyItemAtPath:databasePathFromApp toPath:databasePath error:nil];
+    
+}
+
 
 @end

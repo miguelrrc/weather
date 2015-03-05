@@ -7,6 +7,7 @@
 //
 
 #import "JSONModel.h"
+#import "Weather.h"
 
 @interface City : JSONModel
 
@@ -14,4 +15,7 @@
 @property (strong, nonatomic) NSString* country;
 @property (strong, nonatomic) NSString* latitude;
 @property (strong, nonatomic) NSString* longitude;
+@property (strong, nonatomic) NSNumber<Optional>* ID;
+@property (strong, nonatomic) Weather<Optional>* weather;
+@property (strong, nonatomic) NSArray<Optional>* arrForeCast;
 @end

@@ -8,12 +8,16 @@
 
 #import "WEAForecastTableViewController.h"
 #import "Weather.h"
+#import "Forecast.h"
 #import "CellForecastTableViewCell.h"
 #import "NSDate+Format.h"
+#import "DBWeather.h"
+
 @interface WEAForecastTableViewController ()
 {
-    NSArray *arrLocations;
+    NSMutableArray *arrLocations;
     WeatherClient *client;
+    City *myCity;
 }
 
 @end
@@ -21,16 +25,18 @@
 @implementation WEAForecastTableViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    arrLocations=[NSMutableArray new];
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"MyLocation"])
+    {
+
+        NSDictionary * dictMyCity=[[NSUserDefaults standardUserDefaults] objectForKey:@"MyCity"];
+        myCity=[[City alloc]initWithDictionary:dictMyCity error:nil];
+        self.navigationItem.title=myCity.areaName;
+    }
     
-    arrLocations=[[NSArray alloc]initWithObjects:@"40.7127,-74.005941",@"-34.603723,-58.381593",@"36.5333,-6.2833", nil];
     client=[WeatherClient weatherClientManager];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
+   
+    }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -46,7 +52,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return arrLocations.count;
+    return 5;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -56,18 +62,27 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CellForecastTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellForecastTableViewCell" forIndexPath:indexPath];
     
-    [client getWeatherFromLocation:[arrLocations objectAtIndex:indexPath.row] weather:^(Weather *w) {
-        if(w!=nil)
+//    City* cityFromDB=[arrLocations objectAtIndex:indexPath.row];
+//    
+//    cell.lblWeather.text=cityFromDB.areaName;
+    NSDate *day= [NSDate addNumberOfDays:indexPath.row toDate:[NSDate date]];
+    
+    cell.lblDay.text=[NSDate getNameForDay:day];
+    cell.lblTemperature.text=@"-";
+    
+    NSString *location=[NSString stringWithFormat:@"%@,%@",myCity.latitude,myCity.longitude];
+    
+    [client getWeatherFromLocation:location numberOfDays:[NSNumber numberWithInt:5] city:^(City *city) {
+        
+        if(city!=nil)
         {
             NSLog(@"Ready to populate the Cell");
-//            CellForecastTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellForecastTableViewCell" forIndexPath:indexPath];
-            cell.lblDay.text=[NSDate getNameForDay:[NSDate date]];
-            cell.lblWeather.text=w.city.areaName;
-            cell.lblTemperature.text=[NSString stringWithFormat:@"%@",w.temp_C];
-            cell.imgWeather.image=[UIImage imageNamed:[w imageNameForMediumIcon]];
-//            [self populateController:weather];
+            Forecast *forecast=[city.arrForeCast objectAtIndex:indexPath.row];
+            
+            cell.lblTemperature.text=[NSString stringWithFormat:@"%@",forecast.tempC];
+            cell.imgWeather.image=[UIImage imageNamed:[forecast imageNameForMediumIcon]];
+            cell.lblWeather.text=forecast.weatherDesc;
         }
-//        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     }];
     
     return cell;

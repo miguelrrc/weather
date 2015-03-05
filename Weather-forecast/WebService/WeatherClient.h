@@ -7,13 +7,13 @@
 //
 
 #import "AFHTTPSessionManager.h"
-#import "Weather.h"
+#import "City.h"
 @import CoreLocation;
 @interface WeatherClient : AFHTTPSessionManager
 
 + (WeatherClient *)weatherClientManager;
 
--(void)getWeatherFromLocation:(NSString*)locationString weather:(void (^)(Weather * weather))weather;
+-(void)getWeatherFromLocation:(NSString*)locationString numberOfDays:(NSNumber *)days city:(void (^)(City * city))success;
 -(void)getLocations:(NSString*)cityBeginningWith cities:(void (^)(NSArray * cities))success;
 
 @end

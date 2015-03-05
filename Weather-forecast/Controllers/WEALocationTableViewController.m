@@ -8,6 +8,9 @@
 
 #import "WEALocationTableViewController.h"
 #import "LocationTableViewCell.h"
+#import "UIImage+Utilities.h"
+#import "DBWeather.h"
+
 @interface WEALocationTableViewController ()
 @property (nonatomic, strong) UISearchDisplayController *searchController;
 @end
@@ -15,19 +18,79 @@
 @implementation WEALocationTableViewController
 {
     UIButton *btnAdd;
-    NSArray *arrCities;
-    NSArray *arrLocations;
-    WeatherClient *client;
+    NSArray *arrCities;//Array of cities from the search
+    NSMutableArray *arrLocations;//Array of weathers
+    WeatherClient *client;//Manager for the WS
     BOOL isSearching;
-    CGRect originalSize;
-    UITableViewCell *cellAtBottom;
+    CGRect originalTableViewSize;
+    UIImage* deleteImage;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    cellAtBottom=[UITableViewCell new];
     arrCities=[NSArray new];
+    [self setupViews];
+    
+    client=[WeatherClient weatherClientManager];
+    
+    arrLocations=[NSMutableArray new];
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"MyLocation"])
+    {
+        
+        NSDictionary * dictMyCity=[[NSUserDefaults standardUserDefaults] objectForKey:@"MyCity"];
+        City *myCity=[[City alloc]initWithDictionary:dictMyCity error:nil];
+        myCity.ID=[NSNumber numberWithInt:-1];
+        [arrLocations addObject:myCity];
+    }
+    
+    client=[WeatherClient weatherClientManager];
+    
+    [arrLocations addObjectsFromArray:[DBWeather getAll]];
+    
+}
+
+-(void)viewWillLayoutSubviews{
+    [self.view bringSubviewToFront:btnAdd];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    originalTableViewSize=self.tableView.frame;//We get the size for the tableView to use in keyboardShow or keyboardHide
+    
+    [self btnAddToView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    
+}
+
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark Notifications
+
+- (void)keyboardDidShow:(NSNotification *)nsNotification {
+    NSDictionary *userInfo = [nsNotification userInfo];
+    CGSize keyboardSize = [[userInfo
+                            objectForKey:UIKeyboardFrameBeginUserInfoKey]
+                           CGRectValue].size;
+    
+    CGRect rect=CGRectMake(0, self.tableView.frame.origin.y ,
+                           self.tableView.frame.size.width,
+                           self.tableView.frame.size.height - keyboardSize.height);
+    [self updateTableViewSize:rect];
+}
+
+#pragma mark Private Methods
+
+-(void)setupViews{
     self.searchBar = [[UISearchBar alloc] init];
     [self.searchBar setFrame:CGRectMake(0, 0, self.view.frame.size.width, 55)];
     [self.searchBar setShowsCancelButton:YES animated:YES];
@@ -41,76 +104,69 @@
                                                   action:@selector(done:)];
     self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStyleDone;
     
-    arrLocations=[[NSArray alloc]initWithObjects:@"40.7127,-74.005941",@"40.7127,-74.005941",@"40.7127,-74.005941",@"40.7127,-74.005941",@"40.7127,-74.005941",@"40.7127,-74.005941",@"40.7127,-74.005941",@"40.7127,-74.005941",@"-34.603723,-58.381593",@"36.5333,-6.2833", nil];
-    client=[WeatherClient weatherClientManager];
+    deleteImage=[self createImageForDelete];
     
-//    self.searchController = [[UISearchDisplayController alloc] initWithSearchBar:self.mpSearchBar contentsController:self];
-//    self.searchController.delegate = self;
-//    self.searchController.searchResultsDataSource = self;
-//    self.searchController.searchResultsDelegate = self;
-////    self.searchDisplayController.displaysSearchBarInNavigationBar=YES;
-//    [self.searchDisplayController setActive:NO animated:NO];
-    
-   // self.searchDisplayController.active = false;
-
-    
-  
 }
 
--(void)viewWillLayoutSubviews{
-     [self.view bringSubviewToFront:btnAdd];
+-(void)done:(UIBarButtonItem*)sender{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+
 }
 
--(void)viewWillAppear:(BOOL)animated{
-
-    originalSize=self.tableView.frame;
+-(void)btnAddToView{
     
     btnAdd=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     UIImage *image = [[UIImage imageNamed:@"Location-ButtonAdd"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
     btnAdd.frame= CGRectMake(0, self.tableView.frame.size.height-image.size.height-20, self.view.frame.size.width, image.size.height);
+    
     NSLog(@"Position btn y: %f size:%f",btnAdd.frame.origin.y,btnAdd.frame.size.height);
+    
     [btnAdd setImage:image forState:UIControlStateNormal];
     [btnAdd addTarget:self action:@selector(addLocation) forControlEvents:UIControlEventTouchUpInside];
-//    [btnAdd.layer setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.1].CGColor];
+    //    [btnAdd.layer setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.1].CGColor];
+    
     [self.view addSubview:btnAdd];
-    
-    
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
-   
-    
 }
 
--(void)viewWillDisappear:(BOOL)animated{
-     [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-- (void)keyboardDidShow:(NSNotification *)nsNotification {
-    NSDictionary *userInfo = [nsNotification userInfo];
-    CGSize keyboardSize = [[userInfo
-                      objectForKey:UIKeyboardFrameBeginUserInfoKey]
-                     CGRectValue].size;
-    
-    CGRect rect=CGRectMake(0, self.tableView.frame.origin.y ,
-                           self.tableView.frame.size.width,
-                           self.tableView.frame.size.height - keyboardSize.height);
-    NSLog(@" rect w %f rect h %f",rect.size.width,rect.size.height);
-    [self updateTextViewSize:rect];
-}
-
-
-- (void)updateTextViewSize:(CGRect)rect {
-    
-    
-    
+- (void)updateTableViewSize:(CGRect)rect {
     self.tableView.frame = rect;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+#pragma mark Scroll Methods
+
+-(void)scrollAddButton:(CGFloat)y{
+    CGRect frame = btnAdd.frame;
+    
+#warning    20 should be static or constant.
+    frame.origin.y = y + self.tableView.frame.size.height - btnAdd.frame.size.height-20;
+    btnAdd.frame = frame;
+    
+    [self.view bringSubviewToFront:btnAdd];
+}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if([btnAdd isHidden])//If the button is hidden we don't need to
+        return ;
+    
+    [self scrollAddButton:scrollView.contentOffset.y];
+    [self updateAlphaCell];
+    
 }
 
-#pragma mark - Table view data source
+-(void)updateAlphaCell{
+    
+    NSArray *visibleCells = [self.tableView visibleCells];
+    for (UITableViewCell *cell in visibleCells) {
+        cell.contentView.alpha = 1.0;
+    }
+    UITableViewCell *lastCell=[visibleCells lastObject];
+    lastCell.contentView.alpha=0.1;
+    
+    
+}
+
 
 #pragma mark - Table view data source
 
@@ -121,10 +177,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    if(isSearching){
+    if(isSearching){//Cities
         return arrCities.count;
     }
-    else
+    else//Weather
     {
         
         return arrLocations.count;
@@ -135,85 +191,72 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if(isSearching)
+    if(isSearching)//Cities
         return 44;
-    else
+    else//Weather
         return 90.0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
-    if(isSearching)
+    if(isSearching)//Cities
     {
         UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cityCell" forIndexPath:indexPath];
         City *city=[arrCities objectAtIndex:indexPath.row];
         cell.textLabel.text=[NSString stringWithFormat:@"%@, %@",city.areaName,city.country];
         return cell;
-    }else{
-        LocationTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"locationTableViewCell" forIndexPath:indexPath];
+    }else{//Weather
         
-        [client getWeatherFromLocation:[arrLocations objectAtIndex:indexPath.row] weather:^(Weather *w) {
-            if(w!=nil)
+        LocationTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"locationTableViewCell" forIndexPath:indexPath];
+        cell.rightUtilityButtons = [self getrightButtonsForSwipeCell];
+        City* cityFromDB=[arrLocations objectAtIndex:indexPath.row];
+        cell.lblCity.text=cityFromDB.areaName;
+        cell.lblTemperature.text=@"-";
+         NSString *location=[NSString stringWithFormat:@"%@,%@",cityFromDB.latitude,cityFromDB.longitude];
+        [client getWeatherFromLocation:location numberOfDays:[NSNumber numberWithInt:1] city:^(City *city) {
+            
+            if(city!=nil)
             {
-                NSLog(@"Ready to populate the Cell");
-                //            CellForecastTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellForecastTableViewCell" forIndexPath:indexPath];
-                cell.lblCity.text=w.city.areaName;
-                cell.lblWeather.text=w.weatherDesc;
-                cell.lblTemperature.text=[NSString stringWithFormat:@"%@",w.temp_C];
-                cell.imgWeather.image=[UIImage imageNamed:[w imageNameForMediumIcon]];
-                //            [self populateController:weather];
+                NSLog(@"Ready to populate the WeatherCell after ws got data");
+                
+                cell.lblWeather.text=city.weather.weatherDesc;
+                cell.lblTemperature.text=[NSString stringWithFormat:@"%@",city.weather.temp_C];
+                cell.imgWeather.image=[UIImage imageNamed:[city.weather imageNameForMediumIcon]];
             }
-            //        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         }];
-//        if(cell==cellAtBottom)
-//            cell.contentView.alpha = 0.6;
         return cell;
     }
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    UITableViewController *controller=segue.destinationViewController;
-    controller.hidesBottomBarWhenPushed=YES;
-}
-
-
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if([btnAdd isHidden])
-        return ;
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(!isSearching)
+        return;
+    //Add city to database
+    City *city=[arrCities objectAtIndex:indexPath.row];
+#warning esto en su clase correspondiente
+    [DBWeather insert:city];
     
-    CGRect frame = btnAdd.frame;
-    
-#warning    20 should be static or constant.
-    frame.origin.y = scrollView.contentOffset.y + self.tableView.frame.size.height - btnAdd.frame.size.height-20;
-    btnAdd.frame = frame;
-    
-    [self.view bringSubviewToFront:btnAdd];
-    
-    NSArray *visibleCells = [self.tableView visibleCells];
-    NSArray *paths = [self.tableView indexPathsForVisibleRows];
-    for (UITableViewCell *cell in visibleCells) {
-        cell.contentView.alpha = 1.0;
-    }
-    UITableViewCell *lastCell=[visibleCells lastObject];
-    lastCell.contentView.alpha=0.1;
-
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
     
-    [searchBar resignFirstResponder];
-    [self updateTextViewSize:originalSize];
-    [self.searchBar removeFromSuperview];
+    [searchBar resignFirstResponder];//Keyboard dissapear
+    
+    [self updateTableViewSize:originalTableViewSize];//Update the tableViewSize
+    
+    [self.searchBar removeFromSuperview];//Remove from the navigation bar
+    
     isSearching=NO;
-//    btnAdd.frame= CGRectMake(0, super.tableView.frame.size.height-btnAdd.imageView.image.size.height-20, self.view.frame.size.width, btnAdd.imageView.image.size.height);
+    
     [btnAdd setHidden:NO];
-    [self.navigationItem.rightBarButtonItem setTintColor:nil];
-    [self.navigationItem.rightBarButtonItem setEnabled:YES];
-    [self.tableView reloadData];
+    
+    [self.navigationItem.rightBarButtonItem setTintColor:nil];//Default Color for Done
+    [self.navigationItem.rightBarButtonItem setEnabled:YES];//Activate the button
+    
+    [self.tableView reloadData];//Reload to show the other tableView
 }
+
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     
     
@@ -221,11 +264,10 @@
     NSLog(@"Looking for results");
     
     [client getLocations:searchBar.text cities:^(NSArray *cities) {
-
+        
         if(cities){
             arrCities=[NSArray arrayWithArray:cities];
             [self.tableView reloadData];
-//            self.tableView.frame=CGRectMake(0, 0, 150, 400);
             
             NSLog(@"We have cities");
             
@@ -236,25 +278,38 @@
             
         }
     }];
-   
-//    [self.searchDisplayController.searchResultsTableView reloadData];
+    
 }
 -(void)addLocation{
-
+    
     [btnAdd setHidden:YES];
+    
     [self.navigationItem.rightBarButtonItem setTintColor:[UIColor clearColor]];
     [self.navigationItem.rightBarButtonItem setEnabled:NO];
+    
     [self.navigationController.navigationBar addSubview:self.searchBar];
+    
     [self.searchBar becomeFirstResponder];
-    }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
-*/
 
+- (NSArray *)getrightButtonsForSwipeCell
+{
+    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
+    [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor clearColor] icon:deleteImage];
+    //    [rightUtilityButtons sw_addUtilityButtonWithColor:
+    //     [UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
+    //                                                title:@"Delete"];
+    
+    return rightUtilityButtons;
+}
+
+-(UIImage *)createImageForDelete
+{
+    UIImage *icon=[UIImage imageNamed:@"Delete"];
+    UIImage *deleteIcon=[UIImage imageNamed:@"DeleteIcon"];
+    CGPoint centerBigIcon=CGPointMake(icon.size.width/2, icon.size.height/2);
+    CGPoint centerBothIcon=CGPointMake(centerBigIcon.x-deleteIcon.size.width/2, centerBigIcon.y-deleteIcon.size.height/2);
+    return [UIImage drawImage:deleteIcon inImage:icon atPoint:centerBothIcon];
+    
+}
 @end

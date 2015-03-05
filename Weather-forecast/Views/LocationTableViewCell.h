@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface LocationTableViewCell : UITableViewCell
+#import "SWTableViewCell.h"
+@interface LocationTableViewCell : SWTableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *lblTemperature;
 @property (weak, nonatomic) IBOutlet UILabel *lblCity;
 @property (weak, nonatomic) IBOutlet UILabel *lblWeather;

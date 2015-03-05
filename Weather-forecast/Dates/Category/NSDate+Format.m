@@ -18,4 +18,14 @@
     return dayName;
 }
 
+
++(NSDate*)addNumberOfDays:(int)days toDate:(NSDate*)date
+{
+    NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
+    dayComponent.day = days;
+    
+    NSCalendar *theCalendar = [NSCalendar currentCalendar];
+    date = [theCalendar dateByAddingComponents:dayComponent toDate:[NSDate date] options:0];
+    return date;
+}
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "JSONModel.h"
-#import "City.h"
+//#import "City.h"
 #import "WeatherImage.h"
 @interface Weather : JSONModel
 
@@ -21,7 +21,7 @@
 @property (strong, nonatomic) NSString* weatherDesc;
 @property (strong, nonatomic) NSString* weatherCode;
 @property (strong, nonatomic) NSString* chanceofrain;
-@property (strong, nonatomic) City* city;
+//@property (strong, nonatomic) City* city;
 @property (strong, nonatomic) NSString <Optional> * icon;
 
 - (NSString *)imageNameForBigIcon;

@@ -11,4 +11,6 @@
 @interface NSDate (Format)
 
 +(NSString*)getNameForDay:(NSDate*)myDate;
++(NSDate*)addNumberOfDays:(int)days toDate:(NSDate*)date;
+
 @end

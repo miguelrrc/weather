@@ -9,6 +9,7 @@
 #import "WeatherClient.h"
 #import "Constants.h"
 #import "City.h"
+#import "Forecast.h"
 
 @implementation WeatherClient
 
@@ -41,33 +42,47 @@
     return self;
 }
 
--(void)getWeatherFromLocation:(NSString*)locationString weather:(void (^)(Weather * weather))success{
-    
+-(void)getWeatherFromLocation:(NSString*)locationString numberOfDays:(NSNumber *)days city:(void (^)(City * city))success{
     
     NSDictionary *params=@{@"key": WEB_SERVICE_WEATHER_KEY,
                           @"q":locationString,
                            @"format":@"json",
-                           @"number_of_days":@"1",
+                           @"num_of_days":days,
                            @"includeLocation":@"YES"};
     
     [self  GET:WEB_SERVICE_WEATHER_V2_FREE parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {//OK
        
         NSLog(@"We have data from the ws!");
         NSDictionary *dict=(NSDictionary*)responseObject ;
-        NSArray *arr=[[dict objectForKey:@"data"]objectForKey:@"current_condition"];
-        NSMutableDictionary *dict1=[[arr objectAtIndex:0]mutableCopy];
-        NSArray *desc=[dict1 objectForKey:@"weatherDesc"];
+        NSArray *arrCurrentConditions=[[dict objectForKey:@"data"]objectForKey:@"current_condition"];
+        NSArray *arrConditionsByDays=[[dict objectForKey:@"data"]objectForKey:@"weather"] ;
+        NSMutableArray *arrForecast=[NSMutableArray new];
+        for(int i=0;i<arrConditionsByDays.count;i++){
+            NSDictionary* weatherByDay=[[[arrConditionsByDays objectAtIndex:i]objectForKey:@"hourly"]objectAtIndex:0];
+            NSDictionary*forecastDict=@{@"tempC": [weatherByDay objectForKey:@"tempC"],
+                                       @"tempF":[weatherByDay objectForKey:@"tempF"],
+                                       @"weatherCode":[weatherByDay objectForKey:@"weatherCode"],
+                                       @"weatherDesc":[[[weatherByDay objectForKey:@"weatherDesc"] objectAtIndex:0]valueForKey:@"value"]
+                                       };
+
+            Forecast *f=[[Forecast alloc]initWithDictionary:forecastDict error:nil];
+            [arrForecast addObject:f];
+        }
+        NSMutableDictionary *dictWithValues=[[arrCurrentConditions objectAtIndex:0]mutableCopy];
+        NSArray *desc=[dictWithValues objectForKey:@"weatherDesc"];
+        
+       
+        
         NSString * weatherDesc = [[desc valueForKey:@"value"] componentsJoinedByString:@"/"];
-        [dict1 setObject:weatherDesc forKey:@"weatherDesc"];
+        [dictWithValues setObject:weatherDesc forKey:@"weatherDesc"];
+       
         NSDictionary *area=[[[dict objectForKey:@"data"]objectForKey:@"nearest_area"]objectAtIndex:0];
 //        NSDictionary*city=@{@"areaName": WEB_SERVICE_WEATHER_KEY,
 //                            @"country":@"Rota"};
-        NSDictionary*city=@{@"areaName": [[[area objectForKey:@"areaName"] objectAtIndex:0]objectForKey:@"value"],
-                            @"country":[[[area objectForKey:@"country"] objectAtIndex:0]objectForKey:@"value"],
-                            @"latitude":[area objectForKey:@"latitude"],
-                            @"longitude":[area objectForKey:@"longitude"]};
         
-        [dict1 setObject:city forKey:@"city"];
+        
+//        [dictWithValues setObject:cityDict forKey:@"city"];
+        
         NSArray*arrChanceOfRain=[[[[dict objectForKey:@"data"]objectForKey:@"weather"]objectAtIndex:0] objectForKey:@"hourly"] ;
         int percentage=0;
         for(int i=0;i<arrChanceOfRain.count;i++)
@@ -77,11 +92,34 @@
             
         }
         percentage=percentage/arrChanceOfRain.count;
-        [dict1 setObject:[NSString stringWithFormat:@"%d",percentage] forKey:@"chanceofrain"];
+        [dictWithValues setObject:[NSString stringWithFormat:@"%d",percentage] forKey:@"chanceofrain"];
+
         
-        Weather *w=[[Weather alloc]initWithDictionary:dict1 error:nil];
+//        NSMutableDictionary *cityWithWeatherDict=[[NSMutableDictionary alloc]initWithDictionary:cityDict];
+//        [cityWithWeatherDict setObject:weatherDict forKey:@"weather"];
         
-        success(w);
+        NSDictionary*weatherDict=@{@"weatherDesc": weatherDesc,
+                                   @"chanceofrain":[NSNumber numberWithInt:percentage],
+                                   @"temp_C":[dictWithValues objectForKey:@"temp_C"],
+                                    @"temp_F":[dictWithValues objectForKey:@"temp_F"],
+                                   @"windspeedMiles":[dictWithValues objectForKey:@"windspeedMiles"],
+                                   @"windspeedKmph":[dictWithValues objectForKey:@"windspeedKmph"],
+                                   @"winddir16Point":[dictWithValues objectForKey:@"winddir16Point"],
+                                   @"precipMM":[dictWithValues objectForKey:@"precipMM"],
+                                   @"pressure":[dictWithValues objectForKey:@"pressure"],
+                                   @"weatherCode":[dictWithValues objectForKey:@"weatherCode"]
+                                   };
+       
+        NSDictionary*cityDict=@{@"areaName": [[[area objectForKey:@"areaName"] objectAtIndex:0]objectForKey:@"value"],
+                                @"country":[[[area objectForKey:@"country"] objectAtIndex:0]objectForKey:@"value"],
+                                @"latitude":[area objectForKey:@"latitude"],
+                                @"longitude":[area objectForKey:@"longitude"],
+                                @"weather":weatherDict,
+                                @"arrForeCast":arrForecast};
+
+        City *city=[[City alloc]initWithDictionary:cityDict error:nil];
+        
+        success(city);
         
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {//FAIL
