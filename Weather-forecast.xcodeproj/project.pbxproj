@@ -159,6 +159,7 @@
 		EBCAA7E11AA73606006BF8CF /* DBWeather.m in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA7E01AA73606006BF8CF /* DBWeather.m */; };
 		EBCAA7E41AA736B0006BF8CF /* DatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA7E31AA736B0006BF8CF /* DatabaseManager.m */; };
 		EBCAA7E71AA788F0006BF8CF /* Forecast.m in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA7E61AA788F0006BF8CF /* Forecast.m */; };
+		EBCAA7EB1AA86149006BF8CF /* WEAGeneralSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA7EA1AA86149006BF8CF /* WEAGeneralSettingsTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -346,6 +347,8 @@
 		EBCAA7E31AA736B0006BF8CF /* DatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseManager.m; sourceTree = "<group>"; };
 		EBCAA7E51AA788F0006BF8CF /* Forecast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Forecast.h; sourceTree = "<group>"; };
 		EBCAA7E61AA788F0006BF8CF /* Forecast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Forecast.m; sourceTree = "<group>"; };
+		EBCAA7E91AA86149006BF8CF /* WEAGeneralSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WEAGeneralSettingsTableViewController.h; sourceTree = "<group>"; };
+		EBCAA7EA1AA86149006BF8CF /* WEAGeneralSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WEAGeneralSettingsTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -418,6 +421,8 @@
 				EBAA1E271AA4EDAC00AAA031 /* WEAForecastTableViewController.m */,
 				EBAA1E351AA59E5700AAA031 /* WEALocationTableViewController.h */,
 				EBAA1E361AA59E5700AAA031 /* WEALocationTableViewController.m */,
+				EBCAA7E91AA86149006BF8CF /* WEAGeneralSettingsTableViewController.h */,
+				EBCAA7EA1AA86149006BF8CF /* WEAGeneralSettingsTableViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -735,6 +740,7 @@
 				EBAB5AE11AA1801300A0DBDF /* Frameworks */,
 				EBAB5AE21AA1801300A0DBDF /* Resources */,
 				0DD62333BBAA2F32EABE66B9 /* Copy Pods Resources */,
+				EBCAA7E81AA8549D006BF8CF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -966,6 +972,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		EBCAA7E81AA8549D006BF8CF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "KEYWORDS=\"TODO:|FIXME:|DevTeam:|XXX:\"\nfind \"${SRCROOT}\" \\( -name \"*.h\" -or -name \"*.m\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($KEYWORDS).*\\$\" | perl -p -e \"s/($KEYWORDS)/ warning: \\$1/\"";
+		};
 		FAAD2CEEA4024543AF9B7679 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -989,6 +1008,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBCAA7E11AA73606006BF8CF /* DBWeather.m in Sources */,
+				EBCAA7EB1AA86149006BF8CF /* WEAGeneralSettingsTableViewController.m in Sources */,
 				EBAA1E3D1AA6032B00AAA031 /* LocationTableViewCell.m in Sources */,
 				EBAA1E371AA59E5700AAA031 /* WEALocationTableViewController.m in Sources */,
 				EB077A141AA44443008501E6 /* Weather.m in Sources */,

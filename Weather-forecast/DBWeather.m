@@ -64,4 +64,26 @@
         return lastId;
 
 }
+
++(BOOL)deleteCityByID:(NSNumber *)ID{
+    DatabaseManager *databaseManager = [DatabaseManager sharedManager];
+    
+    __block BOOL success;
+    [databaseManager.databaseQueue inDatabase:^(FMDatabase *db) {
+        
+        success =  [db executeUpdate:
+                    @"DELETE FROM City "
+                    " WHERE id=? ",ID];
+        
+        if (success) {
+            NSLog(@"Deleted row from DB");
+            //            [db commit];
+            
+        }else {
+            NSLog(@"Error deleting row from DB");
+        }
+    }];
+    
+    return success;
+}
 @end

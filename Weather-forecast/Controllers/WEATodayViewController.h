@@ -11,6 +11,7 @@
 
 @interface WEATodayViewController : UIViewController<CLLocationManagerDelegate>
 
+@property (weak, nonatomic) IBOutlet UIView *viewCentered;
 @property (weak, nonatomic) IBOutlet UIImageView *imgWeatherDesc;
 @property (weak, nonatomic) IBOutlet UILabel *lblCityAndCountry;
 @property (weak, nonatomic) IBOutlet UILabel *lblWeatherDescription;

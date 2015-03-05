@@ -13,4 +13,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblCity;
 @property (weak, nonatomic) IBOutlet UILabel *lblWeather;
 @property (weak, nonatomic) IBOutlet UIImageView *imgWeather;
+@property (weak, nonatomic) IBOutlet UIImageView *imgCurrentLocation;
+
 @end

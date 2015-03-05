@@ -13,4 +13,5 @@
 @interface DBWeather : NSObject
 +(NSMutableArray *) getAll;
 +(NSNumber *)insert:(City*)city;
++(BOOL)deleteCityByID:(NSNumber *)ID;
 @end

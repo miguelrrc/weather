@@ -7,8 +7,8 @@
 //
 
 #import "WEAForecastTableViewController.h"
-
-@interface WEALocationTableViewController : UITableViewController<UISearchBarDelegate,UISearchDisplayDelegate>
+#import "SWTableViewCell.h"
+@interface WEALocationTableViewController : UITableViewController<UISearchBarDelegate,UISearchDisplayDelegate,SWTableViewCellDelegate>
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) IBOutlet UISearchDisplayController *searchBarController;
 

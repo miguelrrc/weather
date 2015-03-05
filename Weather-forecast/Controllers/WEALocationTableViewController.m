@@ -12,7 +12,9 @@
 #import "DBWeather.h"
 
 @interface WEALocationTableViewController ()
+
 @property (nonatomic, strong) UISearchDisplayController *searchController;
+
 @end
 
 @implementation WEALocationTableViewController
@@ -32,20 +34,9 @@
     [self setupViews];
     
     client=[WeatherClient weatherClientManager];
-    
     arrLocations=[NSMutableArray new];
-    if([[NSUserDefaults standardUserDefaults] objectForKey:@"MyLocation"])
-    {
-        
-        NSDictionary * dictMyCity=[[NSUserDefaults standardUserDefaults] objectForKey:@"MyCity"];
-        City *myCity=[[City alloc]initWithDictionary:dictMyCity error:nil];
-        myCity.ID=[NSNumber numberWithInt:-1];
-        [arrLocations addObject:myCity];
-    }
     
-    client=[WeatherClient weatherClientManager];
-    
-    [arrLocations addObjectsFromArray:[DBWeather getAll]];
+    [self getLocations];
     
 }
 
@@ -88,59 +79,13 @@
     [self updateTableViewSize:rect];
 }
 
-#pragma mark Private Methods
 
--(void)setupViews{
-    self.searchBar = [[UISearchBar alloc] init];
-    [self.searchBar setFrame:CGRectMake(0, 0, self.view.frame.size.width, 55)];
-    [self.searchBar setShowsCancelButton:YES animated:YES];
-    self.searchBar.delegate = self;
-    
-    [self.navigationItem setHidesBackButton:YES animated:YES];
-    
-    self.navigationItem.rightBarButtonItem =
-    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                  target:self
-                                                  action:@selector(done:)];
-    self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStyleDone;
-    
-    deleteImage=[self createImageForDelete];
-    
-}
-
--(void)done:(UIBarButtonItem*)sender{
-    
-    [self.navigationController popViewControllerAnimated:YES];
-
-}
-
--(void)btnAddToView{
-    
-    btnAdd=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    UIImage *image = [[UIImage imageNamed:@"Location-ButtonAdd"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    
-    btnAdd.frame= CGRectMake(0, self.tableView.frame.size.height-image.size.height-20, self.view.frame.size.width, image.size.height);
-    
-    NSLog(@"Position btn y: %f size:%f",btnAdd.frame.origin.y,btnAdd.frame.size.height);
-    
-    [btnAdd setImage:image forState:UIControlStateNormal];
-    [btnAdd addTarget:self action:@selector(addLocation) forControlEvents:UIControlEventTouchUpInside];
-    //    [btnAdd.layer setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.1].CGColor];
-    
-    [self.view addSubview:btnAdd];
-}
-
-- (void)updateTableViewSize:(CGRect)rect {
-    self.tableView.frame = rect;
-}
-
-
-#pragma mark Scroll Methods
+#pragma mark Add Button
 
 -(void)scrollAddButton:(CGFloat)y{
     CGRect frame = btnAdd.frame;
     
-#warning    20 should be static or constant.
+//TODO:    20 should be static or constant.
     frame.origin.y = y + self.tableView.frame.size.height - btnAdd.frame.size.height-20;
     btnAdd.frame = frame;
     
@@ -152,18 +97,6 @@
     
     [self scrollAddButton:scrollView.contentOffset.y];
     [self updateAlphaCell];
-    
-}
-
--(void)updateAlphaCell{
-    
-    NSArray *visibleCells = [self.tableView visibleCells];
-    for (UITableViewCell *cell in visibleCells) {
-        cell.contentView.alpha = 1.0;
-    }
-    UITableViewCell *lastCell=[visibleCells lastObject];
-    lastCell.contentView.alpha=0.1;
-    
     
 }
 
@@ -208,12 +141,29 @@
         return cell;
     }else{//Weather
         
+         City* cityFromArray=[arrLocations objectAtIndex:indexPath.row];
+        
         LocationTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"locationTableViewCell" forIndexPath:indexPath];
-        cell.rightUtilityButtons = [self getrightButtonsForSwipeCell];
-        City* cityFromDB=[arrLocations objectAtIndex:indexPath.row];
-        cell.lblCity.text=cityFromDB.areaName;
+       
+        
+      
+        
+        
+        
+        cell.lblCity.text=cityFromArray.areaName;
         cell.lblTemperature.text=@"-";
-         NSString *location=[NSString stringWithFormat:@"%@,%@",cityFromDB.latitude,cityFromDB.longitude];
+        if(cityFromArray.ID.intValue==-1)
+        {
+            [cell.imgCurrentLocation setHidden:NO];
+        }else
+        {
+            [cell.imgCurrentLocation setHidden:YES];
+            
+            cell.rightUtilityButtons = [self getrightButtonsForSwipeCell];
+            cell.delegate=self;//Current Location can't be deleted
+
+        }
+         NSString *location=[NSString stringWithFormat:@"%@,%@",cityFromArray.latitude,cityFromArray.longitude];
         [client getWeatherFromLocation:location numberOfDays:[NSNumber numberWithInt:1] city:^(City *city) {
             
             if(city!=nil)
@@ -237,11 +187,106 @@
 #warning esto en su clase correspondiente
     [DBWeather insert:city];
     
+    [self removeSearchBarAndShowWeatherTable];
+    
+    [self updateDataAndView];
+   
+    
 }
+
+
+#pragma mark Private Methods
+
+-(void)setupViews{
+    self.searchBar = [[UISearchBar alloc] init];
+    [self.searchBar setFrame:CGRectMake(0, 0, self.view.frame.size.width, 55)];
+    [self.searchBar setShowsCancelButton:YES animated:YES];
+    self.searchBar.delegate = self;
+    
+    [self.navigationItem setHidesBackButton:YES animated:YES];
+    
+    self.navigationItem.rightBarButtonItem =
+    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                  target:self
+                                                  action:@selector(done:)];
+    self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStyleDone;
+    
+    deleteImage=[self createImageForDelete];
+    
+}
+
+-(void)done:(UIBarButtonItem*)sender{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
+
+-(void)btnAddToView{
+    
+    btnAdd=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIImage *image = [[UIImage imageNamed:@"Location-ButtonAdd"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    btnAdd.frame= CGRectMake(0, self.tableView.frame.size.height-image.size.height-20, self.view.frame.size.width, image.size.height);
+    
+    NSLog(@"Position btn y: %f size:%f",btnAdd.frame.origin.y,btnAdd.frame.size.height);
+    
+    [btnAdd setImage:image forState:UIControlStateNormal];
+    [btnAdd addTarget:self action:@selector(addLocation) forControlEvents:UIControlEventTouchUpInside];
+    //    [btnAdd.layer setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.1].CGColor];
+    
+    [self.view addSubview:btnAdd];
+}
+
+- (void)updateTableViewSize:(CGRect)rect {
+    self.tableView.frame = rect;
+}
+
+-(void)getLocations{
+    if (arrLocations.count>0) {//Remove old data
+        [arrLocations removeAllObjects];
+    }
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"MyLocation"])
+    {
+        
+        NSDictionary * dictMyCity=[[NSUserDefaults standardUserDefaults] objectForKey:@"MyCity"];
+        City *myCity=[[City alloc]initWithDictionary:dictMyCity error:nil];
+        myCity.ID=[NSNumber numberWithInt:-1];
+        [arrLocations addObject:myCity];
+    }
+    
+    client=[WeatherClient weatherClientManager];
+    
+    [arrLocations addObjectsFromArray:[DBWeather getAll]];
+    
+}
+-(void)updateDataAndView{
+    [self getLocations];
+    [self.tableView reloadData];
+}
+
+
+-(void)updateAlphaCell{
+    
+    NSArray *visibleCells = [self.tableView visibleCells];
+    for (UITableViewCell *cell in visibleCells) {
+        cell.contentView.alpha = 1.0;
+    }
+    UITableViewCell *lastCell=[visibleCells lastObject];
+    lastCell.contentView.alpha=0.1;
+    
+    
+}
+
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
     
-    [searchBar resignFirstResponder];//Keyboard dissapear
+    [self removeSearchBarAndShowWeatherTable];
+    [self.tableView reloadData];//Reload to show the other tableView
+    
+}
+
+-(void)removeSearchBarAndShowWeatherTable{
+    [self.searchBar resignFirstResponder];//Keyboard dissapear
     
     [self updateTableViewSize:originalTableViewSize];//Update the tableViewSize
     
@@ -254,9 +299,9 @@
     [self.navigationItem.rightBarButtonItem setTintColor:nil];//Default Color for Done
     [self.navigationItem.rightBarButtonItem setEnabled:YES];//Activate the button
     
-    [self.tableView reloadData];//Reload to show the other tableView
+    
 }
-
+    
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     
     
@@ -312,4 +357,19 @@
     return [UIImage drawImage:deleteIcon inImage:icon atPoint:centerBothIcon];
     
 }
+
+
+#pragma mark SWTableViewCellDelegate
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index;
+{
+    NSLog(@"Delete button touched");
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    City *city=[arrLocations objectAtIndex:indexPath.row];
+    [DBWeather deleteCityByID:city.ID];
+    
+    [self updateDataAndView];
+    
+}
+
+
 @end
