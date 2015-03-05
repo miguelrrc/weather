@@ -823,12 +823,12 @@
         <scene sceneID="iRy-IV-zb4">
             <objects>
                 <tableViewController id="EGR-J3-GRy" customClass="WEAForecastTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="22" sectionFooterHeight="22" id="QQ8-cR-suw">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="90" sectionHeaderHeight="22" sectionFooterHeight="22" id="QQ8-cR-suw">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="cellForecast" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellForecastTableViewCell" rowHeight="90" id="G4O-VN-Cd6" customClass="CellForecastTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="cellForecast" selectionStyle="none" indentationWidth="10" reuseIdentifier="CellForecastTableViewCell" rowHeight="90" id="G4O-VN-Cd6" customClass="CellForecastTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G4O-VN-Cd6" id="gxO-z8-B9l">
                                     <autoresizingMask key="autoresizingMask"/>

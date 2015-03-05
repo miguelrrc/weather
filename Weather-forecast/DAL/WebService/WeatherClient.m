@@ -44,8 +44,8 @@
 
 #pragma mark GET
 /**
- Get the data from the WS.
- * Initialize with the correct setup
+ Get the location from the WS.
+ *
  * @param locationString Lat+Long
  * @param days Number of days to forecast
  * @param city The City object populated
@@ -74,7 +74,12 @@
 
 }
 
-
+/**
+Get cities from the WS.
+* @param cityBeginningWith City with that name
+* @param days Number of days to forecast
+* @return array with cities
+*/
 -(void)getLocations:(NSString*)cityBeginningWith cities:(void (^)(NSArray * cities))success{
     
     NSDictionary *params=@{@"key": WEB_SERVICE_WEATHER_KEY,
@@ -97,6 +102,11 @@
 
 
 
+/**
+Populate city from JSON dictionary
+ * @param dict JSON dictionary
+ * @return City object populated
+ */
 -(City*)populateCityFromNSDictionary:(NSDictionary *)dict{
 //    NSDictionary *dict=(NSDictionary*)responseObject ;
     NSArray *arrCurrentConditions=[[dict objectForKey:@"data"]objectForKey:@"current_condition"];
@@ -124,11 +134,6 @@
     [dictWithValues setObject:weatherDesc forKey:@"weatherDesc"];
     
     NSDictionary *area=[[[dict objectForKey:@"data"]objectForKey:@"nearest_area"]objectAtIndex:0];
-    //        NSDictionary*city=@{@"areaName": WEB_SERVICE_WEATHER_KEY,
-    //                            @"country":@"Rota"};
-    
-    
-    //        [dictWithValues setObject:cityDict forKey:@"city"];
     
     NSArray*arrChanceOfRain=[[[[dict objectForKey:@"data"]objectForKey:@"weather"]objectAtIndex:0] objectForKey:@"hourly"] ;
     int percentage=0;
@@ -142,10 +147,6 @@
         percentage=percentage/arrChanceOfRain.count;
     
     [dictWithValues setObject:[NSString stringWithFormat:@"%d",percentage] forKey:@"chanceofrain"];
-    
-    
-    //        NSMutableDictionary *cityWithWeatherDict=[[NSMutableDictionary alloc]initWithDictionary:cityDict];
-    //        [cityWithWeatherDict setObject:weatherDict forKey:@"weather"];
     
     NSDictionary*weatherDict=@{@"weatherDesc": weatherDesc,
                                @"chanceofrain":[NSNumber numberWithInt:percentage],
@@ -169,6 +170,12 @@
    return[[City alloc]initWithDictionary:cityDict error:nil];
 }
 
+
+/**
+ Populate city from JSON dictionary
+ * @param dict JSON dictionary
+ * @return City object populated
+ */
 -(NSArray *)populateArrayWithCitiesToReturnFromDictionary:(NSDictionary*)citiesJSON{
     NSLog(@"Server returned cities %@",citiesJSON);
 

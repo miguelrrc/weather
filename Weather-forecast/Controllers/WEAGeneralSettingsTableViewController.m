@@ -18,12 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    [self setup];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,13 +37,16 @@
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 
 }
+
+/**
+ *Create the section. I didn't insert the separetor here. I used a new row for that.
+ */
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
     UITableViewHeaderFooterView *headerView=[UITableViewHeaderFooterView new];
     headerView.textLabel.font=[UIFont fontWithName:@"Proxima Nova-Semibold" size:14];
     [headerView.textLabel setTextColor:[UIColor colorWithRed:(47/255.0) green:(145.0/255.0) blue:255 alpha:1.0]];
     headerView.textLabel.text=@"GENERAL";
-//    cell.backgroundColor=[UIColor whiteColor];
     headerView.contentView.backgroundColor=[UIColor whiteColor];
     
     return headerView;
@@ -63,7 +62,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 3;
+    return 3;//1 Hidden + 2 Normal
 }
 
 
@@ -71,7 +70,7 @@
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellSettings" forIndexPath:indexPath];
     
-    if(indexPath.row==lengthSettings)
+    if(indexPath.row==lengthSettings)//1
     {
         NSNumber *optionSelected=[[NSUserDefaults standardUserDefaults]objectForKey:@"LengthSettings"];
         cell.textLabel.text=@"Unit of length";
@@ -82,7 +81,8 @@
         {
             cell.detailTextLabel.text=@"Feet";
         }
-    }else if(indexPath.row==tempereatureSettings){
+        
+    }else if(indexPath.row==tempereatureSettings){//2
         NSNumber *optionSelected=[[NSUserDefaults standardUserDefaults]objectForKey:@"TemperatureSettings"];
         cell.textLabel.text=@"Units of temperature";
         if(optionSelected.intValue==1)
@@ -99,7 +99,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if(indexPath.row==1)
+    if(indexPath.row==lengthSettings)
         [self performSegueWithIdentifier: @"segueToChooseLength" sender: self];
     else
          [self performSegueWithIdentifier: @"segueToChooseTemperature" sender: self];
@@ -111,18 +111,18 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     id controller = [segue destinationViewController];
-    if([segue.identifier isEqualToString:@"segueToChooseLength"])//El controlador es EPCTActivityDatePopoverController
+    if([segue.identifier isEqualToString:@"segueToChooseLength"])
     {
         NSLog(@"Settings for Length");
         
         [controller setTypeSettings:[NSNumber numberWithInt:1]];
         [controller setTypeSelected:^BOOL(BOOL success, NSError **error) {
-            if(success)
+            if(success)//It's a new value
                [self.tableView reloadData];
             return success;
         }];
         
-    }else
+    }else //User touch Temperature Settings
     {
         NSLog(@"Settings for Temperature");
         
@@ -137,5 +137,9 @@
     
 }
 
+-(void)setup{
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+}
 
 @end

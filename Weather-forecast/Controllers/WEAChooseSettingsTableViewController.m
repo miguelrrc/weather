@@ -24,10 +24,12 @@
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
    
-    
+    //arrOfOptions will be filled with different data is the user touch length settings or Temperature Settings
     if(lengthSettings==self.typeSettings.intValue){
+        
         arrayOfOptions=[NSArray arrayWithObjects:@"Meters",@"Feet", nil];
         optionSelected=[[NSUserDefaults standardUserDefaults] objectForKey:@"LengthSettings"];
+    
     }
     else if(tempereatureSettings==self.typeSettings.intValue)
     {
@@ -59,30 +61,36 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellChooseSettingOption" forIndexPath:indexPath];
     
     cell.textLabel.text=[arrayOfOptions objectAtIndex:indexPath.row];
-    // Configure the cell...
     
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-       NSError *error = nil;
-    if(optionSelected.intValue!=indexPath.row+1){
-        [self changeSettingsOptions:[NSNumber numberWithLong:indexPath.row+1]];
-         [self typeSelected](YES, &error);//We have a new option selected;
+    NSError *error = nil;
+    
+    if(optionSelected.intValue!=indexPath.row+1){//Values are 1 and 2. That is why +1
+        [
+         self changeSettingsOptions:[NSNumber numberWithLong:indexPath.row+1]];
+        
+        [self typeSelected](YES, &error);//We have a new option selected to return to the GeneralSettings;
+   
     }else{
-         [self typeSelected](NO, &error);
+        
+        [self typeSelected](NO, &error);
     }
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    [self.navigationController popViewControllerAnimated:YES];//Go back after touch an option
 }
 
 
 -(void)changeSettingsOptions:(NSNumber *)newOptionSelected{
+    
     optionSelected=newOptionSelected;
     
-    if(lengthSettings==self.typeSettings.intValue){
+    if(lengthSettings==self.typeSettings.intValue){//1
         [[NSUserDefaults standardUserDefaults] setObject:optionSelected forKey:@"LengthSettings"];
 
-    }else  if(tempereatureSettings==self.typeSettings.intValue){
+    }else  if(tempereatureSettings==self.typeSettings.intValue){//2
         [[NSUserDefaults standardUserDefaults] setObject:optionSelected forKey:@"TemperatureSettings"];
     }
     
