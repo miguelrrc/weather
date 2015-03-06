@@ -38,9 +38,12 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
     [self.imgLocation setHidden:YES];
-   [[MyLocationManager sharedController].locationManager startUpdatingLocation];//We do it here so it can get new data when user touch Item Button Today.
+    [[MyLocationManager sharedController].locationManager startUpdatingLocation];//We do it here so it can get new data when user touch Item Button Today.
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

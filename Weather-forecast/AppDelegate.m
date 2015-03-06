@@ -82,6 +82,10 @@
     NSString *databasePathFromApp = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:databaseName];
     
     success=[fileManager copyItemAtPath:databasePathFromApp toPath:databasePath error:nil];
+    if(success)
+        NSLog(@"Everything ok with the database");
+    else
+        NSLog(@"There is a problem with the database");
     
 }
 

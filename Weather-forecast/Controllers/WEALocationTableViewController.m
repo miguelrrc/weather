@@ -57,7 +57,7 @@ static NSInteger const btnAddBottomSpace = 20;//Space between the bottom of the 
  * Initialize data for the first time
  */
 -(void)viewWillAppear:(BOOL)animated{
-    
+    [super viewWillAppear:animated];
     originalTableViewSize=self.tableView.frame;//We get the size for the tableView to use in keyboardShow or keyboardHide
     
     [self btnAddToView];
@@ -67,6 +67,7 @@ static NSInteger const btnAddBottomSpace = 20;//Space between the bottom of the 
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -427,7 +428,7 @@ static NSInteger const btnAddBottomSpace = 20;//Space between the bottom of the 
             NSLog(@"We have cities");
             
         }else{
-            arrCities=[NSArray arrayWithObject:nil];
+            arrCities=[NSArray new  ];
             NSLog(@"No results");
         }
         

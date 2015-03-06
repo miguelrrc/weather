@@ -40,7 +40,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     
-    
+    [super viewWillAppear:animated];
     if([[NSUserDefaults standardUserDefaults] objectForKey:@"MyCity"])//We have a city in defaults from Today
     {
          [MBProgressHUD showHUDAddedTo:self.view animated:YES];//Loading
