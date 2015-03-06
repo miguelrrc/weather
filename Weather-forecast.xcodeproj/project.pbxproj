@@ -31,9 +31,7 @@
 		EBAB5AF31AA1801300A0DBDF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5AF11AA1801300A0DBDF /* Main.storyboard */; };
 		EBAB5AF81AA1801300A0DBDF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5AF61AA1801300A0DBDF /* LaunchScreen.xib */; };
 		EBAB5B041AA1801300A0DBDF /* Weather_forecastTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAB5B031AA1801300A0DBDF /* Weather_forecastTests.m */; };
-		EBAB5BB21AA1806A00A0DBDF /* _DS_Store in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B0E1AA1806900A0DBDF /* _DS_Store */; };
 		EBAB5BD11AA1806A00A0DBDF /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B2E1AA1806A00A0DBDF /* Icon.png */; };
-		EBAB5BD21AA1806A00A0DBDF /* _DS_Store in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B301AA1806A00A0DBDF /* _DS_Store */; };
 		EBAB5BD31AA1806A00A0DBDF /* Button.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B311AA1806A00A0DBDF /* Button.png */; };
 		EBAB5BD41AA1806A00A0DBDF /* Button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B321AA1806A00A0DBDF /* Button@2x.png */; };
 		EBAB5BD51AA1806A00A0DBDF /* Button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B331AA1806A00A0DBDF /* Button@3x.png */; };
@@ -83,7 +81,6 @@
 		EBAB5C011AA1806A00A0DBDF /* ProximaNova-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B601AA1806A00A0DBDF /* ProximaNova-Light.otf */; };
 		EBAB5C021AA1806A00A0DBDF /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B611AA1806A00A0DBDF /* ProximaNova-Regular.otf */; };
 		EBAB5C031AA1806A00A0DBDF /* ProximaNova-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B621AA1806A00A0DBDF /* ProximaNova-Semibold.otf */; };
-		EBAB5C041AA1806A00A0DBDF /* _DS_Store in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B641AA1806A00A0DBDF /* _DS_Store */; };
 		EBAB5C051AA1806A00A0DBDF /* Bar.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B651AA1806A00A0DBDF /* Bar.png */; };
 		EBAB5C061AA1806A00A0DBDF /* Bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B661AA1806A00A0DBDF /* Bar@2x.png */; };
 		EBAB5C071AA1806A00A0DBDF /* Bar@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B671AA1806A00A0DBDF /* Bar@3x.png */; };
@@ -108,7 +105,6 @@
 		EBAB5C1A1AA1806A00A0DBDF /* Today.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B7A1AA1806A00A0DBDF /* Today.png */; };
 		EBAB5C1B1AA1806A00A0DBDF /* Today@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B7B1AA1806A00A0DBDF /* Today@2x.png */; };
 		EBAB5C1C1AA1806A00A0DBDF /* Today@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B7C1AA1806A00A0DBDF /* Today@3x.png */; };
-		EBAB5C1D1AA1806A00A0DBDF /* _DS_Store in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B7E1AA1806A00A0DBDF /* _DS_Store */; };
 		EBAB5C1E1AA1806A00A0DBDF /* Bar.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B7F1AA1806A00A0DBDF /* Bar.png */; };
 		EBAB5C1F1AA1806A00A0DBDF /* Bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B801AA1806A00A0DBDF /* Bar@2x.png */; };
 		EBAB5C201AA1806A00A0DBDF /* Bar@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B811AA1806A00A0DBDF /* Bar@3x.png */; };
@@ -896,7 +892,6 @@
 				EBAB5BF91AA1806A00A0DBDF /* Sun@3x.png in Resources */,
 				EBAB5C4F1AA1806A00A0DBDF /* WInd_Big@2x.png in Resources */,
 				EBAB5C071AA1806A00A0DBDF /* Bar@3x.png in Resources */,
-				EBAB5C041AA1806A00A0DBDF /* _DS_Store in Resources */,
 				EBAB5BD41AA1806A00A0DBDF /* Button@2x.png in Resources */,
 				EBAB5C081AA1806A00A0DBDF /* divider-bottom.png in Resources */,
 				EBAB5C191AA1806A00A0DBDF /* Settings@3x.png in Resources */,
@@ -941,7 +936,6 @@
 				EBAB5BFB1AA1806A00A0DBDF /* White-Overlay@2x.png in Resources */,
 				EBAB5C451AA1806A00A0DBDF /* Sun.png in Resources */,
 				EBAB5C481AA1806A00A0DBDF /* Sun_Big.png in Resources */,
-				EBAB5C1D1AA1806A00A0DBDF /* _DS_Store in Resources */,
 				EBAB5BE51AA1806A00A0DBDF /* DeleteIcon.png in Resources */,
 				EBAB5BF41AA1806A00A0DBDF /* Search.png in Resources */,
 				EBAB5C061AA1806A00A0DBDF /* Bar@2x.png in Resources */,
@@ -991,13 +985,11 @@
 				EBAB5C211AA1806A00A0DBDF /* Celcius.png in Resources */,
 				EBAB5BF01AA1806A00A0DBDF /* NLine@3x.png in Resources */,
 				EBAB5C011AA1806A00A0DBDF /* ProximaNova-Light.otf in Resources */,
-				EBAB5BB21AA1806A00A0DBDF /* _DS_Store in Resources */,
 				EBAB5C441AA1806A00A0DBDF /* Settings@3x.png in Resources */,
 				EBAB5C1C1AA1806A00A0DBDF /* Today@3x.png in Resources */,
 				EBAB5C2D1AA1806A00A0DBDF /* Current.png in Resources */,
 				EBAB5BE91AA1806A00A0DBDF /* Divider@2x.png in Resources */,
 				EBAB5C391AA1806A00A0DBDF /* Line.png in Resources */,
-				EBAB5BD21AA1806A00A0DBDF /* _DS_Store in Resources */,
 				EBAB5C271AA1806A00A0DBDF /* Compass.png in Resources */,
 				EBAB5C311AA1806A00A0DBDF /* Divider@2x.png in Resources */,
 				EBAB5C3D1AA1806A00A0DBDF /* Location@2x.png in Resources */,
