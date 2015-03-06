@@ -346,7 +346,7 @@ static NSInteger const btnAddBottomSpace = 20;//Space between the bottom of the 
         [arrLocations removeAllObjects];
     }
     
-    if([[NSUserDefaults standardUserDefaults] objectForKey:@"MyLocation"])//First row will be user location
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"MyCity"])//First row will be user location
     {
         
         NSDictionary * dictMyCity=[[NSUserDefaults standardUserDefaults] objectForKey:@"MyCity"];
