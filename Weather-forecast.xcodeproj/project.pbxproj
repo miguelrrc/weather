@@ -42,9 +42,6 @@
 		EB42A6761AA9AEFC009F6180 /* DeleteIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B431AA1806A00A0DBDF /* DeleteIcon.png */; };
 		EB42A6771AA9AEFC009F6180 /* DeleteIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B441AA1806A00A0DBDF /* DeleteIcon@2x.png */; };
 		EB42A6781AA9AEFC009F6180 /* DeleteIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B451AA1806A00A0DBDF /* DeleteIcon@3x.png */; };
-		EB42A6791AA9AEFC009F6180 /* Divider.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B461AA1806A00A0DBDF /* Divider.png */; };
-		EB42A67A1AA9AEFC009F6180 /* Divider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B471AA1806A00A0DBDF /* Divider@2x.png */; };
-		EB42A67B1AA9AEFC009F6180 /* Divider@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B481AA1806A00A0DBDF /* Divider@3x.png */; };
 		EB42A67C1AA9AEFC009F6180 /* Input.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B491AA1806A00A0DBDF /* Input.png */; };
 		EB42A67D1AA9AEFC009F6180 /* Input@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B4A1AA1806A00A0DBDF /* Input@2x.png */; };
 		EB42A67E1AA9AEFC009F6180 /* Input@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B4B1AA1806A00A0DBDF /* Input@3x.png */; };
@@ -57,15 +54,9 @@
 		EB42A6851AA9AEFC009F6180 /* Search.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B521AA1806A00A0DBDF /* Search.png */; };
 		EB42A6861AA9AEFC009F6180 /* Search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B531AA1806A00A0DBDF /* Search@2x.png */; };
 		EB42A6871AA9AEFC009F6180 /* Search@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B541AA1806A00A0DBDF /* Search@3x.png */; };
-		EB42A6881AA9AEFC009F6180 /* Sun.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B551AA1806A00A0DBDF /* Sun.png */; };
-		EB42A6891AA9AEFC009F6180 /* Sun@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B561AA1806A00A0DBDF /* Sun@2x.png */; };
-		EB42A68A1AA9AEFC009F6180 /* Sun@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B571AA1806A00A0DBDF /* Sun@3x.png */; };
 		EB42A68B1AA9AEFC009F6180 /* White-Overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B581AA1806A00A0DBDF /* White-Overlay.png */; };
 		EB42A68C1AA9AEFC009F6180 /* White-Overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B591AA1806A00A0DBDF /* White-Overlay@2x.png */; };
 		EB42A68D1AA9AEFC009F6180 /* White-Overlay@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B5A1AA1806A00A0DBDF /* White-Overlay@3x.png */; };
-		EB42A68E1AA9AEFC009F6180 /* Wind.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B5B1AA1806A00A0DBDF /* Wind.png */; };
-		EB42A68F1AA9AEFC009F6180 /* Wind@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B5C1AA1806A00A0DBDF /* Wind@2x.png */; };
-		EB42A6901AA9AEFC009F6180 /* Wind@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B5D1AA1806A00A0DBDF /* Wind@3x.png */; };
 		EB42A6911AA9AEFC009F6180 /* Bar.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B651AA1806A00A0DBDF /* Bar.png */; };
 		EB42A6921AA9AEFC009F6180 /* Bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B661AA1806A00A0DBDF /* Bar@2x.png */; };
 		EB42A6931AA9AEFC009F6180 /* Bar@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B671AA1806A00A0DBDF /* Bar@3x.png */; };
@@ -81,9 +72,6 @@
 		EB42A69D1AA9AEFC009F6180 /* Forecast.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B711AA1806A00A0DBDF /* Forecast.png */; };
 		EB42A69E1AA9AEFC009F6180 /* Forecast@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B721AA1806A00A0DBDF /* Forecast@2x.png */; };
 		EB42A69F1AA9AEFC009F6180 /* Forecast@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B731AA1806A00A0DBDF /* Forecast@3x.png */; };
-		EB42A6A01AA9AEFC009F6180 /* Line.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B741AA1806A00A0DBDF /* Line.png */; };
-		EB42A6A11AA9AEFC009F6180 /* Line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B751AA1806A00A0DBDF /* Line@2x.png */; };
-		EB42A6A21AA9AEFC009F6180 /* Line@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B761AA1806A00A0DBDF /* Line@3x.png */; };
 		EB42A6A31AA9AEFC009F6180 /* Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B771AA1806A00A0DBDF /* Settings.png */; };
 		EB42A6A41AA9AEFC009F6180 /* Settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B781AA1806A00A0DBDF /* Settings@2x.png */; };
 		EB42A6A51AA9AEFC009F6180 /* Settings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B791AA1806A00A0DBDF /* Settings@3x.png */; };
@@ -111,9 +99,6 @@
 		EB42A6BB1AA9AEFC009F6180 /* Divider.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B911AA1806A00A0DBDF /* Divider.png */; };
 		EB42A6BC1AA9AEFC009F6180 /* Divider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B921AA1806A00A0DBDF /* Divider@2x.png */; };
 		EB42A6BD1AA9AEFC009F6180 /* Divider@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B931AA1806A00A0DBDF /* Divider@3x.png */; };
-		EB42A6BE1AA9AEFC009F6180 /* Forecast.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B941AA1806A00A0DBDF /* Forecast.png */; };
-		EB42A6BF1AA9AEFC009F6180 /* Forecast@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B951AA1806A00A0DBDF /* Forecast@2x.png */; };
-		EB42A6C01AA9AEFC009F6180 /* Forecast@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B961AA1806A00A0DBDF /* Forecast@3x.png */; };
 		EB42A6C11AA9AEFC009F6180 /* Lightning_Big.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B971AA1806A00A0DBDF /* Lightning_Big.png */; };
 		EB42A6C21AA9AEFC009F6180 /* Lightning_Big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B981AA1806A00A0DBDF /* Lightning_Big@2x.png */; };
 		EB42A6C31AA9AEFC009F6180 /* Lightning_Big@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B991AA1806A00A0DBDF /* Lightning_Big@3x.png */; };
@@ -126,9 +111,6 @@
 		EB42A6CA1AA9AEFC009F6180 /* Rain.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5BA01AA1806A00A0DBDF /* Rain.png */; };
 		EB42A6CB1AA9AEFC009F6180 /* Rain@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5BA11AA1806A00A0DBDF /* Rain@2x.png */; };
 		EB42A6CC1AA9AEFC009F6180 /* Rain@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5BA21AA1806A00A0DBDF /* Rain@3x.png */; };
-		EB42A6CD1AA9AEFC009F6180 /* Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5BA31AA1806A00A0DBDF /* Settings.png */; };
-		EB42A6CE1AA9AEFC009F6180 /* Settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5BA41AA1806A00A0DBDF /* Settings@2x.png */; };
-		EB42A6CF1AA9AEFC009F6180 /* Settings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5BA51AA1806A00A0DBDF /* Settings@3x.png */; };
 		EB42A6D01AA9AEFC009F6180 /* Sun.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5BA61AA1806A00A0DBDF /* Sun.png */; };
 		EB42A6D11AA9AEFC009F6180 /* Sun@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5BA71AA1806A00A0DBDF /* Sun@2x.png */; };
 		EB42A6D21AA9AEFC009F6180 /* Sun@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5BA81AA1806A00A0DBDF /* Sun@3x.png */; };
@@ -879,9 +861,6 @@
 				EB42A6761AA9AEFC009F6180 /* DeleteIcon.png in Resources */,
 				EB42A6771AA9AEFC009F6180 /* DeleteIcon@2x.png in Resources */,
 				EB42A6781AA9AEFC009F6180 /* DeleteIcon@3x.png in Resources */,
-				EB42A6791AA9AEFC009F6180 /* Divider.png in Resources */,
-				EB42A67A1AA9AEFC009F6180 /* Divider@2x.png in Resources */,
-				EB42A67B1AA9AEFC009F6180 /* Divider@3x.png in Resources */,
 				EB42A67C1AA9AEFC009F6180 /* Input.png in Resources */,
 				EB42A67D1AA9AEFC009F6180 /* Input@2x.png in Resources */,
 				EB42A67E1AA9AEFC009F6180 /* Input@3x.png in Resources */,
@@ -894,15 +873,9 @@
 				EB42A6851AA9AEFC009F6180 /* Search.png in Resources */,
 				EB42A6861AA9AEFC009F6180 /* Search@2x.png in Resources */,
 				EB42A6871AA9AEFC009F6180 /* Search@3x.png in Resources */,
-				EB42A6881AA9AEFC009F6180 /* Sun.png in Resources */,
-				EB42A6891AA9AEFC009F6180 /* Sun@2x.png in Resources */,
-				EB42A68A1AA9AEFC009F6180 /* Sun@3x.png in Resources */,
 				EB42A68B1AA9AEFC009F6180 /* White-Overlay.png in Resources */,
 				EB42A68C1AA9AEFC009F6180 /* White-Overlay@2x.png in Resources */,
 				EB42A68D1AA9AEFC009F6180 /* White-Overlay@3x.png in Resources */,
-				EB42A68E1AA9AEFC009F6180 /* Wind.png in Resources */,
-				EB42A68F1AA9AEFC009F6180 /* Wind@2x.png in Resources */,
-				EB42A6901AA9AEFC009F6180 /* Wind@3x.png in Resources */,
 				EB42A6911AA9AEFC009F6180 /* Bar.png in Resources */,
 				EB42A6921AA9AEFC009F6180 /* Bar@2x.png in Resources */,
 				EB42A6931AA9AEFC009F6180 /* Bar@3x.png in Resources */,
@@ -918,9 +891,6 @@
 				EB42A69D1AA9AEFC009F6180 /* Forecast.png in Resources */,
 				EB42A69E1AA9AEFC009F6180 /* Forecast@2x.png in Resources */,
 				EB42A69F1AA9AEFC009F6180 /* Forecast@3x.png in Resources */,
-				EB42A6A01AA9AEFC009F6180 /* Line.png in Resources */,
-				EB42A6A11AA9AEFC009F6180 /* Line@2x.png in Resources */,
-				EB42A6A21AA9AEFC009F6180 /* Line@3x.png in Resources */,
 				EB42A6A31AA9AEFC009F6180 /* Settings.png in Resources */,
 				EB42A6A41AA9AEFC009F6180 /* Settings@2x.png in Resources */,
 				EB42A6A51AA9AEFC009F6180 /* Settings@3x.png in Resources */,
@@ -948,9 +918,6 @@
 				EB42A6BB1AA9AEFC009F6180 /* Divider.png in Resources */,
 				EB42A6BC1AA9AEFC009F6180 /* Divider@2x.png in Resources */,
 				EB42A6BD1AA9AEFC009F6180 /* Divider@3x.png in Resources */,
-				EB42A6BE1AA9AEFC009F6180 /* Forecast.png in Resources */,
-				EB42A6BF1AA9AEFC009F6180 /* Forecast@2x.png in Resources */,
-				EB42A6C01AA9AEFC009F6180 /* Forecast@3x.png in Resources */,
 				EB42A6C11AA9AEFC009F6180 /* Lightning_Big.png in Resources */,
 				EB42A6C21AA9AEFC009F6180 /* Lightning_Big@2x.png in Resources */,
 				EB42A6C31AA9AEFC009F6180 /* Lightning_Big@3x.png in Resources */,
@@ -963,9 +930,6 @@
 				EB42A6CA1AA9AEFC009F6180 /* Rain.png in Resources */,
 				EB42A6CB1AA9AEFC009F6180 /* Rain@2x.png in Resources */,
 				EB42A6CC1AA9AEFC009F6180 /* Rain@3x.png in Resources */,
-				EB42A6CD1AA9AEFC009F6180 /* Settings.png in Resources */,
-				EB42A6CE1AA9AEFC009F6180 /* Settings@2x.png in Resources */,
-				EB42A6CF1AA9AEFC009F6180 /* Settings@3x.png in Resources */,
 				EB42A6D01AA9AEFC009F6180 /* Sun.png in Resources */,
 				EB42A6D11AA9AEFC009F6180 /* Sun@2x.png in Resources */,
 				EB42A6D21AA9AEFC009F6180 /* Sun@3x.png in Resources */,

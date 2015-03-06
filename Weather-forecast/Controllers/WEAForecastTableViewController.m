@@ -53,12 +53,12 @@
         
         NSString *location=[NSString stringWithFormat:@"%@,%@",myCity.latitude,myCity.longitude];
        
-        [client getWeatherFromLocation:location numberOfDays:[NSNumber numberWithInt:FORECAST_DAYS] city:^(City *city) {//By default 5 days
+        [client getWeatherFromLocation:location numberOfDays:[NSNumber numberWithInteger:FORECAST_DAYS] city:^(City *city) {//By default 5 days
             
             if(city!=nil)//We got a city from WS
             {
                 myCityFromWS=city;
-                numberOfDays=[NSNumber numberWithInt:FORECAST_DAYS];
+                numberOfDays=[NSNumber numberWithInteger:FORECAST_DAYS];
                 
                 [self.tableView reloadData];
                 
