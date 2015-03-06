@@ -11,5 +11,5 @@
 @interface UIImage (Utilities)
 
 +(UIImage*) drawImage:(UIImage*) fgImage inImage:(UIImage*) bgImage atPoint:(CGPoint)  point;
-
++(UIImage *)convertViewIntoImage:(UIView*)viewToImage;
 @end

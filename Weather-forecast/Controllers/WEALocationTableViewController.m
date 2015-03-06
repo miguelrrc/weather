@@ -14,6 +14,7 @@
 
 #import "DBWeather.h"
 
+static NSInteger const btnAddBottomSpace = 20;//Space between the bottom of the view and btnAdd
 
 @interface WEALocationTableViewController ()
 
@@ -35,7 +36,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     
     [self initializeData];
     
@@ -103,8 +103,7 @@
 -(void)scrollAddButton:(CGFloat)y{
     CGRect frame = btnAdd.frame;
     
-//TODO:    20 should be static or constant.
-    frame.origin.y = y + self.tableView.frame.size.height - btnAdd.frame.size.height-20;
+    frame.origin.y = y + self.tableView.frame.size.height - btnAdd.frame.size.height-btnAddBottomSpace;
     btnAdd.frame = frame;
     
     [self.view bringSubviewToFront:btnAdd];
@@ -209,7 +208,7 @@
     //Add city to database
     City *city=[arrCities objectAtIndex:indexPath.row];
     
-//TODO: Implement in a different layer.
+    //TODO: Implement in a different layer.
     [DBWeather insert:city];
     
     [self removeSearchBarAndShowWeatherTable];//Clean everything from the search
@@ -226,6 +225,14 @@
  * Initialize data for the first time
  */
 -(void)initializeData{
+    //Create Delete Image
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        deleteImage=[self createImageForDelete];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"Image done");
+        });
+    });
+    
     arrCities=[NSArray new];
     client=[WeatherClient weatherClientManager];
     arrLocations=[NSMutableArray new];
@@ -235,13 +242,8 @@
  * Configure the searchBar and the deleteImage;
  */
 -(void)setupViews{
-   
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    self.searchBar = [[UISearchBar alloc] init];
-    [self.searchBar setFrame:CGRectMake(0, 0, self.view.frame.size.width, 55)];
-    [self.searchBar setShowsCancelButton:YES animated:YES];
-    self.searchBar.delegate = self;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     [self.navigationItem setHidesBackButton:YES animated:YES];
     
@@ -250,12 +252,58 @@
                                                   target:self
                                                   action:@selector(done:)];
     self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStyleDone;
+
     
-    //TODO: do it in other thread?
-    deleteImage=[self createImageForDelete];
+    [self customizeSearchBar];
+    
+
     
 }
 
+/**
+ * Customize the Search Bar View;
+ */
+-(void)customizeSearchBar{
+    
+    
+    self.searchBar = [[UISearchBar alloc] init];
+    [self.searchBar setFrame:CGRectMake(0, 0, self.view.frame.size.width, 55)];
+    [self.searchBar setShowsCancelButton:YES animated:YES];
+    self.searchBar.delegate = self;
+    
+
+    //Background Image
+    [self.searchBar setSearchFieldBackgroundImage:[UIImage imageNamed:@"Input"] forState:UIControlStateNormal];
+    
+    //Magnifying glass
+    [self.searchBar setImage:[UIImage imageNamed:@"Search"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+    
+    //Close
+    [[UISearchBar appearance] setImage:[UIImage imageNamed:@"Close"] forSearchBarIcon:UISearchBarIconClear state:UIControlStateNormal];
+   
+    //Text input style
+    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setFont:[UIFont fontWithName:@"Proxima Nova-Regular" size:16]];
+    
+    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor colorWithRed:(47/255.0) green:(145.0/255.0) blue:255 alpha:1.0]];
+    
+    
+    //Custom Cancel Button. Appearance crash with title :(.
+    
+    //Necessary for iOS 7
+    UIButton *cancelButton;
+    UIView *topView = self.searchBar.subviews[0];
+    for (UIView *subView in topView.subviews) {
+        if ([subView isKindOfClass:NSClassFromString(@"UINavigationButton")]) {
+            cancelButton = (UIButton*)subView;
+        }
+    }
+    if (cancelButton) {
+        //Set the new title of the cancel button
+        [cancelButton setTitle:@"Close" forState:UIControlStateNormal];
+        [cancelButton.titleLabel setFont:[UIFont fontWithName:@"Proxima Nova-Regular" size:16]];
+        [cancelButton setTitleColor:[UIColor colorWithRed:(47/255.0) green:(145.0/255.0) blue:255 alpha:1.0] forState:UIControlStateNormal];
+    }
+}
 /**
  * Go back
  */
@@ -273,7 +321,7 @@
     btnAdd=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     UIImage *image = [[UIImage imageNamed:@"Location-ButtonAdd"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
-    btnAdd.frame= CGRectMake(0, self.tableView.frame.size.height-image.size.height-20, self.view.frame.size.width, image.size.height);
+    btnAdd.frame= CGRectMake(0, self.tableView.frame.size.height-image.size.height-btnAddBottomSpace, self.view.frame.size.width, image.size.height);
     
     NSLog(@"Position btn y: %f size:%f",btnAdd.frame.origin.y,btnAdd.frame.size.height);
     
@@ -399,6 +447,11 @@
     [self.navigationItem.rightBarButtonItem setEnabled:NO];
     
     [self.navigationController.navigationBar addSubview:self.searchBar];
+    
+    
+    
+    
+   
     
     [self.searchBar becomeFirstResponder];
 }

@@ -13,7 +13,7 @@
 @protocol MyLocationManagerDelegate
 
 - (void)locationControllerDidUpdateLocation:(CLLocation *)location;
-
+-(void)locationFailWithError:(NSError *)error;
 @end
 
 @interface MyLocationManager : NSObject<CLLocationManagerDelegate>

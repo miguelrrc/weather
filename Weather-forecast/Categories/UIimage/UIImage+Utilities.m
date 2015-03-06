@@ -7,6 +7,7 @@
 //
 
 #import "UIImage+Utilities.h"
+#import "QuartzCore/QuartzCore.h"
 
 @implementation UIImage (Utilities)
 
@@ -19,5 +20,14 @@
     UIGraphicsEndImageContext();
     
     return newImage;
+}
+
++(UIImage *)convertViewIntoImage:(UIView*)viewToImage{
+    UIGraphicsBeginImageContext(viewToImage.frame.size);
+    [[viewToImage layer] renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *screenshot = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return screenshot;
+
 }
 @end

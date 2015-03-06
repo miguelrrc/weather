@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "AFNetworkActivityIndicatorManager.h"
 @interface AppDelegate ()
 
 @end
@@ -36,9 +36,9 @@
     [self createAndCheckDatabase];
     
     
-//    TODO: Fix this
     [self setupUserDefaultsByDefault];
-    // Override point for customization after application launch.
+
+    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];//AFNetworking will deal with ActivityIndicator
     return YES;
 }
 

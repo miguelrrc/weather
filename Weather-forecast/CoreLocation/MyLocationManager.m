@@ -44,7 +44,22 @@
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
+    NSError *errorDomain;
     NSLog(@"Error getting location: %@", error);
+     CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+    if (status == kCLAuthorizationStatusRestricted || status == kCLAuthorizationStatusDenied ) {
+        NSLog(@"Not authorized to use Location");
+        
+        NSMutableDictionary* details = [NSMutableDictionary dictionary];
+        [details setValue:@"Not authorized to use Geolocation" forKey:NSLocalizedDescriptionKey];
+        errorDomain=[NSError errorWithDomain:@"GeoLocation Service" code:400 userInfo:details];
+    }else
+    {
+        NSMutableDictionary* details = [NSMutableDictionary dictionary];
+        [details setValue:@"Unavailable to receive location" forKey:NSLocalizedDescriptionKey];
+        errorDomain=[NSError errorWithDomain:@"GeoLocation Service" code:401 userInfo:details];
+    }
+    [self.delegate locationFailWithError:errorDomain];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:  (CLAuthorizationStatus)status

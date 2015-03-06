@@ -1196,7 +1196,7 @@
         <image name="Today-Wind" width="25" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="oNV-gr-ViT"/>
         <segue reference="dHE-w0-9Jw"/>
+        <segue reference="QwO-cS-fZS"/>
     </inferredMetricsTieBreakers>
 </document>

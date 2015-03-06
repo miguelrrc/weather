@@ -10,8 +10,7 @@
 #import "WeatherClient.h"
 #import "MBProgressHUD.h"
 #import "Weather+Utilities.h"
-//TODO: Put it in category the next import
-#import "QuartzCore/QuartzCore.h"
+#import "UIImage+Utilities.h"
 
 @interface WEATodayViewController ()
 
@@ -105,11 +104,19 @@
         }else
         {
             NSLog(@"Error retrieving the city");
-            //TODO: alert
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"No connection" message:@"Error retrieving data from the server" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            
+            [alert show];
         }
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];//Bye loading
     }];
     
+}
+
+-(void)locationFailWithError:(NSError *)error{
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:error.domain message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    
+    [alert show];
 }
 
 /**
@@ -133,19 +140,16 @@
 
 - (IBAction)shareWeather:(id)sender {
     //Create the image
-    //TODO: integrate in a category
     
-    UIGraphicsBeginImageContext(self.viewCentered.frame.size);
-    [[self.viewCentered layer] renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *screenshot = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
+    UIImage *screenshot = [UIImage convertViewIntoImage:self.viewCentered];
+
     //Message to send
     NSString *myMessage=[NSString stringWithFormat:@"The weather today at: %@",cityToday.areaName];
     
     NSArray *activityItems = @[myMessage,screenshot];
     
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+
     activityViewController.excludedActivityTypes = @[UIActivityTypePostToWeibo, UIActivityTypeAssignToContact,UIActivityTypeCopyToPasteboard,UIActivityTypePrint,UIActivityTypeSaveToCameraRoll ];//We exclude some stuff
     
     [self presentViewController:activityViewController animated:YES completion:NULL];//Show

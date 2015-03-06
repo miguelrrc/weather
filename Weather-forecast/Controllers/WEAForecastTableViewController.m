@@ -65,6 +65,9 @@
             }
             else{
                 NSLog(@"Error retrieving data from WS");
+                UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"No connection" message:@"Error retrieving data from the server" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                
+                [alert show];
             }
              [MBProgressHUD hideAllHUDsForView:self.view animated:YES];//Bye loading
         }];
