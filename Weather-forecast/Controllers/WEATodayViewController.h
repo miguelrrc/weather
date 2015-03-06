@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblWeatherPressure;
 @property (weak, nonatomic) IBOutlet UILabel *lblWeatherWindSpeed;
 @property (weak, nonatomic) IBOutlet UILabel *lblWindDirection;
+@property (weak, nonatomic) IBOutlet UIImageView *imgLocation;
 
 - (IBAction)shareWeather:(id)sender;
 

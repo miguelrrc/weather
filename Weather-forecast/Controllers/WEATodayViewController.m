@@ -38,6 +38,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    [self.imgLocation setHidden:YES];
    [[MyLocationManager sharedController].locationManager startUpdatingLocation];//We do it here so it can get new data when user touch Item Button Today.
 }
 - (void)didReceiveMemoryWarning {
@@ -62,6 +63,7 @@
     self.lblWindDirection.text=city.weather.winddir16Point;
     self.lblCityAndCountry.text=[NSString stringWithFormat:@"%@, %@",city.areaName,city.country];
     self.imgWeatherDesc.image=[UIImage imageNamed:[city.weather imageNameForBigIcon]];
+    [self.imgLocation setHidden:NO];
 }
 
 /**

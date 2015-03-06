@@ -81,7 +81,8 @@
                                                 <exclude reference="ZgJ-VA-Nqk"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=compact">
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="111" y="121" width="60" height="18"/>
                                             <mask key="constraints">
                                                 <include reference="ZJZ-P3-ePY"/>
                                                 <include reference="ZgJ-VA-Nqk"/>
@@ -156,7 +157,8 @@
                                                 <exclude reference="afq-fD-K0h"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=compact">
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="221" y="250" width="59" height="15"/>
                                             <mask key="constraints">
                                                 <include reference="F8w-KB-r3T"/>
                                                 <include reference="afq-fD-K0h"/>
@@ -321,6 +323,9 @@
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Today-Current" translatesAutoresizingMaskIntoConstraints="NO" id="G27-Mi-7Yd">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="83" y="121" width="11" height="11"/>
+                                        </variation>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -565,6 +570,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="imgLocation" destination="G27-Mi-7Yd" id="Zbv-el-Lec"/>
                         <outlet property="imgWeatherDesc" destination="u5g-gh-FiB" id="aj0-1D-oF9"/>
                         <outlet property="lblCityAndCountry" destination="5mY-v3-9Uk" id="mbl-1k-aR5"/>
                         <outlet property="lblWeatherChancePrecipMM" destination="yYp-8b-7es" id="G4q-da-Vdv"/>
