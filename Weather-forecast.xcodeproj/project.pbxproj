@@ -33,9 +33,6 @@
 		EB42A66D1AA9AEFC009F6180 /* CS.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B3A1AA1806A00A0DBDF /* CS.png */; };
 		EB42A66E1AA9AEFC009F6180 /* CS@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B3B1AA1806A00A0DBDF /* CS@2x.png */; };
 		EB42A66F1AA9AEFC009F6180 /* CS@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B3C1AA1806A00A0DBDF /* CS@3x.png */; };
-		EB42A6701AA9AEFC009F6180 /* Current.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B3D1AA1806A00A0DBDF /* Current.png */; };
-		EB42A6711AA9AEFC009F6180 /* Current@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B3E1AA1806A00A0DBDF /* Current@2x.png */; };
-		EB42A6721AA9AEFC009F6180 /* Current@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B3F1AA1806A00A0DBDF /* Current@3x.png */; };
 		EB42A6731AA9AEFC009F6180 /* Delete.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B401AA1806A00A0DBDF /* Delete.png */; };
 		EB42A6741AA9AEFC009F6180 /* Delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B411AA1806A00A0DBDF /* Delete@2x.png */; };
 		EB42A6751AA9AEFC009F6180 /* Delete@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B421AA1806A00A0DBDF /* Delete@3x.png */; };
@@ -78,9 +75,6 @@
 		EB42A6A61AA9AEFC009F6180 /* Today.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B7A1AA1806A00A0DBDF /* Today.png */; };
 		EB42A6A71AA9AEFC009F6180 /* Today@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B7B1AA1806A00A0DBDF /* Today@2x.png */; };
 		EB42A6A81AA9AEFC009F6180 /* Today@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B7C1AA1806A00A0DBDF /* Today@3x.png */; };
-		EB42A6A91AA9AEFC009F6180 /* Bar.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B7F1AA1806A00A0DBDF /* Bar.png */; };
-		EB42A6AA1AA9AEFC009F6180 /* Bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B801AA1806A00A0DBDF /* Bar@2x.png */; };
-		EB42A6AB1AA9AEFC009F6180 /* Bar@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B811AA1806A00A0DBDF /* Bar@3x.png */; };
 		EB42A6AC1AA9AEFC009F6180 /* Celcius.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B821AA1806A00A0DBDF /* Celcius.png */; };
 		EB42A6AD1AA9AEFC009F6180 /* Celcius@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B831AA1806A00A0DBDF /* Celcius@2x.png */; };
 		EB42A6AE1AA9AEFC009F6180 /* Celcius@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB5B841AA1806A00A0DBDF /* Celcius@3x.png */; };
@@ -852,9 +846,6 @@
 				EB42A66D1AA9AEFC009F6180 /* CS.png in Resources */,
 				EB42A66E1AA9AEFC009F6180 /* CS@2x.png in Resources */,
 				EB42A66F1AA9AEFC009F6180 /* CS@3x.png in Resources */,
-				EB42A6701AA9AEFC009F6180 /* Current.png in Resources */,
-				EB42A6711AA9AEFC009F6180 /* Current@2x.png in Resources */,
-				EB42A6721AA9AEFC009F6180 /* Current@3x.png in Resources */,
 				EB42A6731AA9AEFC009F6180 /* Delete.png in Resources */,
 				EB42A6741AA9AEFC009F6180 /* Delete@2x.png in Resources */,
 				EB42A6751AA9AEFC009F6180 /* Delete@3x.png in Resources */,
@@ -897,9 +888,6 @@
 				EB42A6A61AA9AEFC009F6180 /* Today.png in Resources */,
 				EB42A6A71AA9AEFC009F6180 /* Today@2x.png in Resources */,
 				EB42A6A81AA9AEFC009F6180 /* Today@3x.png in Resources */,
-				EB42A6A91AA9AEFC009F6180 /* Bar.png in Resources */,
-				EB42A6AA1AA9AEFC009F6180 /* Bar@2x.png in Resources */,
-				EB42A6AB1AA9AEFC009F6180 /* Bar@3x.png in Resources */,
 				EB42A6AC1AA9AEFC009F6180 /* Celcius.png in Resources */,
 				EB42A6AD1AA9AEFC009F6180 /* Celcius@2x.png in Resources */,
 				EB42A6AE1AA9AEFC009F6180 /* Celcius@3x.png in Resources */,
