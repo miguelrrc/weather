@@ -6,7 +6,9 @@ Small App to get the weather from different locations. The App uses http://www.w
 In this version the App uses SQLite to save the data from cities and NSUserDefaults to save some settings by the user. By default the Temperature is Celsius and the Wind speed is Km/h.
 
 #Version 
-1.0.0
+1.0.1
+Fixed some minor bugs
+Fixed UIfor the iPhone 4s
 
 #Tech
 Cocoapods
