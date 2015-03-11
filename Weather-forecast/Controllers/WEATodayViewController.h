@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "MyLocationManager.h"
-
 @interface WEATodayViewController : UIViewController<MyLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *viewCentered;
@@ -21,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblWeatherWindSpeed;
 @property (weak, nonatomic) IBOutlet UILabel *lblWindDirection;
 @property (weak, nonatomic) IBOutlet UIImageView *imgLocation;
+
+@property (weak, nonatomic)  NSNumber *cityID;//Geolocation = -1 or nil
 
 - (IBAction)shareWeather:(id)sender;
 

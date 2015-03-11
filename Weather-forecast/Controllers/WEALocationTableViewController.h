@@ -6,8 +6,10 @@
 //  Copyright (c) 2015 miguelrrc. All rights reserved.
 //
 
-#import "WEAForecastTableViewController.h"
 #import "SWTableViewCell.h"
+
+
+
 @interface WEALocationTableViewController : UITableViewController<UISearchBarDelegate,UISearchDisplayDelegate,SWTableViewCellDelegate>
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) IBOutlet UISearchDisplayController *searchBarController;

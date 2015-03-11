@@ -36,6 +36,33 @@
     return dbArray;
     
 }
++(City*)getCityByID:(NSNumber *)ID{
+    
+    DatabaseManager *databaseManager = [DatabaseManager sharedManager];
+    City *city=[City new];
+    
+    [databaseManager.databaseQueue inDatabase:^(FMDatabase *db) {
+        FMResultSet *results = [db executeQuery:@"SELECT * FROM City WHERE ID=?",ID];
+        
+        while([results next])
+        {
+            
+            city.areaName=[results stringForColumn:@"area_name"];
+            city.latitude=[results stringForColumn:@"latitude"];
+            city.longitude=[results stringForColumn:@"longitude"];
+            city.country=[results stringForColumn:@"country"];
+            city.ID=[NSNumber numberWithInt:[results intForColumn:@"id"]];
+            
+//            [dbArray addObject:city];
+            
+        }
+        [results close];
+    }];
+    
+    return city;
+    
+
+}
 
 +(NSNumber *)insert:(City*)city{
     

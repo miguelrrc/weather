@@ -11,5 +11,5 @@
 @interface WEAChooseSettingsTableViewController : UITableViewController
 
 @property (copy) BOOL (^typeSelected)(BOOL changed, NSError **error);
-@property (weak, nonatomic) IBOutlet NSNumber *typeSettings;
+@property (weak, nonatomic)  NSNumber *typeSettings;
 @end

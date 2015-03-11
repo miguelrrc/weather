@@ -132,6 +132,7 @@
 		EBCAA7E71AA788F0006BF8CF /* Forecast.m in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA7E61AA788F0006BF8CF /* Forecast.m */; };
 		EBCAA7EB1AA86149006BF8CF /* WEAGeneralSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA7EA1AA86149006BF8CF /* WEAGeneralSettingsTableViewController.m */; };
 		EBCAA7F11AA875AD006BF8CF /* WEAChooseSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA7F01AA875AD006BF8CF /* WEAChooseSettingsTableViewController.m */; };
+		EBEF052D1AAF7DC600BFED4A /* SharedCity.m in Sources */ = {isa = PBXBuildFile; fileRef = EBEF052C1AAF7DC600BFED4A /* SharedCity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -326,6 +327,8 @@
 		EBCAA7EF1AA875AD006BF8CF /* WEAChooseSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WEAChooseSettingsTableViewController.h; sourceTree = "<group>"; };
 		EBCAA7F01AA875AD006BF8CF /* WEAChooseSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WEAChooseSettingsTableViewController.m; sourceTree = "<group>"; };
 		EBCAA7F21AA87747006BF8CF /* TypeOfSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypeOfSettings.h; sourceTree = "<group>"; };
+		EBEF052B1AAF7DC600BFED4A /* SharedCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedCity.h; sourceTree = "<group>"; };
+		EBEF052C1AAF7DC600BFED4A /* SharedCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedCity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -499,6 +502,8 @@
 				EB077A1C1AA47619008501E6 /* City.m */,
 				EBCAA7E51AA788F0006BF8CF /* Forecast.h */,
 				EBCAA7E61AA788F0006BF8CF /* Forecast.m */,
+				EBEF052B1AAF7DC600BFED4A /* SharedCity.h */,
+				EBEF052C1AAF7DC600BFED4A /* SharedCity.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1000,6 +1005,7 @@
 				EB3D86CD1AA8D4D100239289 /* MyLocationManager.m in Sources */,
 				EBCAA7EB1AA86149006BF8CF /* WEAGeneralSettingsTableViewController.m in Sources */,
 				EBAA1E3D1AA6032B00AAA031 /* LocationTableViewCell.m in Sources */,
+				EBEF052D1AAF7DC600BFED4A /* SharedCity.m in Sources */,
 				EBAA1E371AA59E5700AAA031 /* WEALocationTableViewController.m in Sources */,
 				EB077A141AA44443008501E6 /* Weather.m in Sources */,
 				EBCAA7F11AA875AD006BF8CF /* WEAChooseSettingsTableViewController.m in Sources */,

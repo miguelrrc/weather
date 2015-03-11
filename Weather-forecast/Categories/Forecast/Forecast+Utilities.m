@@ -15,9 +15,9 @@
     NSNumber *temperatureSelected=[[NSUserDefaults standardUserDefaults] objectForKey:@"TemperatureSettings"];
     NSString *temperature;
     if(temperatureSelected.intValue==1)
-        temperature=[NSString stringWithFormat:@"%@ °C",self.tempC];
+        temperature=[NSString stringWithFormat:@"%@°",self.tempC];
     else
-        temperature=[NSString stringWithFormat:@"%@ °F",self.tempF];
+        temperature=[NSString stringWithFormat:@"%@°",self.tempF];
     
     return  temperature;
 }

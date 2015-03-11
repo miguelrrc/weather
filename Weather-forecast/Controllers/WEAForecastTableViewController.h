@@ -10,5 +10,5 @@
 #import "WeatherClient.h"
 
 @interface WEAForecastTableViewController : UITableViewController
-
+@property (weak, nonatomic)  NSNumber *cityID;//Geolocation = -1 or nil
 @end

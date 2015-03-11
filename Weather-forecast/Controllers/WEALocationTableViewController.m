@@ -11,8 +11,10 @@
 #import "UIImage+Utilities.h"
 #import "Weather+Utilities.h"
 #import "MBProgressHUD.h"
-
+#import "WEATodayViewController.h"
 #import "DBWeather.h"
+#import "WEAForecastTableViewController.h"
+#import "SharedCity.h"
 
 static NSInteger const btnAddBottomSpace = 20;//Space between the bottom of the view and btnAdd
 
@@ -204,8 +206,25 @@ static NSInteger const btnAddBottomSpace = 20;//Space between the bottom of the 
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(!isSearching)//If we are not adding new cities then return.
+    if(!isSearching)//If we are not searching. Then we get the data from the selected Row.
+    {
+
+        City *citySelected=[arrLocations objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+        
+        //ID=-1 From Location and ID>0 From DB
+        SharedCity *sharedCity=[SharedCity sharedCity];
+        if(citySelected.ID.intValue>0)//>0 From DB
+            sharedCity.cityID=citySelected.ID;
+        else//Geolocation
+            sharedCity.cityID=nil;
+        
+       
+        
+        [self.navigationController popViewControllerAnimated:YES];//Go back to the parent
+        
         return;
+
+    }
     //Add city to database
     City *city=[arrCities objectAtIndex:indexPath.row];
     
@@ -499,7 +518,27 @@ static NSInteger const btnAddBottomSpace = 20;//Space between the bottom of the 
     
     [self updateDataAndView];
     
+    SharedCity *sharedCity=[SharedCity sharedCity];
+    if(sharedCity.cityID.intValue==city.ID.intValue)
+    {
+        NSLog(@"The selected City For Today and Forecast is deleted");
+        sharedCity.cityID=nil;
+    }
+    
 }
+
+
+#pragma mark Segue
+//
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    WEATodayViewController *controller=segue.destinationViewController;
+//    City *citySelected=[arrLocations objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+//    if(citySelected.ID.intValue>0)//It's from DB
+//        controller.cityID=citySelected.ID;
+//    else
+//        controller.cityID=nil;
+//}
 
 
 @end

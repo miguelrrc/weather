@@ -14,12 +14,12 @@
 #import "DBWeather.h"
 #import "MBProgressHUD.h"
 #import "Constants.h"
-
+#import "SharedCity.h"
 
 @interface WEAForecastTableViewController ()
 {
     WeatherClient *client; //WS
-    City *myCity; //City from defaults
+    City *myCity; //City chosen
     City *myCityFromWS;//City from the WebService
     NSNumber *numberOfDays;//Number of days to forecast. If there is no city then it will be 0
 }
@@ -41,7 +41,15 @@
 -(void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
-    if([[NSUserDefaults standardUserDefaults] objectForKey:@"MyCity"])//We have a city in defaults from Today
+    
+    SharedCity *sharedCity=[SharedCity sharedCity];
+    self.cityID=sharedCity.cityID;
+    if(self.cityID!=nil)//We have a city from the db
+    {
+        myCity=[DBWeather getCityByID:self.cityID];
+        [self getForecastData];
+        
+    }else if([[NSUserDefaults standardUserDefaults] objectForKey:@"MyCity"])//We have a city in defaults from Today
     {
          [MBProgressHUD showHUDAddedTo:self.view animated:YES];//Loading
         
@@ -49,28 +57,9 @@
         
         myCity=[[City alloc]initWithDictionary:dictMyCity error:nil];//Populate city with dict
         
-        self.navigationItem.title=myCity.areaName;
+        [self getForecastData];
         
-        NSString *location=[NSString stringWithFormat:@"%@,%@",myCity.latitude,myCity.longitude];
-       
-        [client getWeatherFromLocation:location numberOfDays:[NSNumber numberWithInteger:FORECAST_DAYS] city:^(City *city) {//By default 5 days
-            
-            if(city!=nil)//We got a city from WS
-            {
-                myCityFromWS=city;
-                numberOfDays=[NSNumber numberWithInteger:FORECAST_DAYS];
-                
-                [self.tableView reloadData];
-                
-            }
-            else{
-                NSLog(@"Error retrieving data from WS");
-                UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"No connection" message:@"Error retrieving data from the server" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                
-                [alert show];
-            }
-             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];//Bye loading
-        }];
+        
     }else
     {
         numberOfDays=[NSNumber numberWithInt:0];//We don't have a city
@@ -80,31 +69,13 @@
     
 }
 
-/**
- * Configurate the tableView and initialize some data
- */
--(void)setup{
-    
-    //UI setup
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    
-    client=[WeatherClient weatherClientManager];
-
-}
-/**
- * Show alert because there is no city
- */
--(void)showAlertWithoutLocation{
-    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"No location" message:@"There is no geolocation activated" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    
-    [alert show];
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 #pragma mark - Table view data source
 
@@ -161,6 +132,56 @@
 }
 
 
+#pragma Private methods
+
+/**
+ * Get the Forecast data from WS. Allows Cities from DB and from NSUserDefaults
+ */
+-(void)getForecastData{
+    self.navigationItem.title=myCity.areaName;
+    
+    NSString *location=[NSString stringWithFormat:@"%@,%@",myCity.latitude,myCity.longitude];
+    
+    [client getWeatherFromLocation:location numberOfDays:[NSNumber numberWithInteger:FORECAST_DAYS] city:^(City *city) {//By default 5 days
+        
+        if(city!=nil)//We got a city from WS
+        {
+            myCityFromWS=city;
+            numberOfDays=[NSNumber numberWithInteger:FORECAST_DAYS];
+            
+            [self.tableView reloadData];
+            
+        }
+        else{
+            NSLog(@"Error retrieving data from WS");
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"No connection" message:@"Error retrieving data from the server" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            
+            [alert show];
+        }
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];//Bye loading
+    }];
+}
+
+/**
+ * Configurate the tableView and initialize some data
+ */
+-(void)setup{
+    
+    //UI setup
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    
+    client=[WeatherClient weatherClientManager];
+    
+}
+/**
+ * Show alert because there is no city
+ */
+-(void)showAlertWithoutLocation{
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"No location" message:@"There is no geolocation activated" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    
+    [alert show];
+}
 
 
 @end
