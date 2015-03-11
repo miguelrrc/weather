@@ -79,7 +79,8 @@
                                                 <exclude reference="ZJZ-P3-ePY"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=compact">
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="175" y="118" width="0.0" height="21"/>
                                             <mask key="constraints">
                                                 <include reference="ZJZ-P3-ePY"/>
                                             </mask>
@@ -88,7 +89,9 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nop-J5-nFm">
                                         <rect key="frame" x="64" y="246" width="192" height="25"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="25" id="0uU-eQ-cDz"/>
+                                            <constraint firstAttribute="height" constant="25" id="0uU-eQ-cDz">
+                                                <variation key="heightClass=regular-widthClass=compact" constant="29"/>
+                                            </constraint>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="25"/>
                                         <color key="textColor" red="0.1843137255" green="0.56862745100000001" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -327,6 +330,9 @@
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Today-Current" translatesAutoresizingMaskIntoConstraints="NO" id="G27-Mi-7Yd">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="147" y="123" width="11" height="11"/>
+                                        </variation>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -401,7 +407,7 @@
                                     </constraint>
                                     <constraint firstAttribute="centerX" secondItem="VRN-eQ-wh4" secondAttribute="centerX" id="heZ-ZS-OWS"/>
                                     <constraint firstItem="oWx-ni-b0Y" firstAttribute="top" secondItem="Nop-J5-nFm" secondAttribute="bottom" constant="24" id="htr-5D-C87">
-                                        <variation key="heightClass=regular-widthClass=compact" constant="22"/>
+                                        <variation key="heightClass=regular-widthClass=compact" constant="20"/>
                                     </constraint>
                                     <constraint firstAttribute="centerX" secondItem="5mY-v3-9Uk" secondAttribute="centerX" id="iDz-ya-zFu"/>
                                     <constraint firstItem="u5g-gh-FiB" firstAttribute="top" secondItem="MTD-c7-A6b" secondAttribute="top" id="iTR-tp-CMJ">
