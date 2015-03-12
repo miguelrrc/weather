@@ -63,7 +63,9 @@
             NSString *location=[NSString stringWithFormat:@"%@,%@",cityFromDB.latitude,cityFromDB.longitude];
             
             [self getDataFromLocation:location city:^(City *city) {
-                [self populateController:city];
+                if(city!=nil) {
+                    [self populateController:city];
+                }
                  [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             }];
            
@@ -149,6 +151,10 @@
         //Get the data silently
         [self getDataFromLocation:locationString city:^(City *city) {
             NSLog(@"City from WS will not populate the controller");
+            if(city)
+            {
+                [self saveCityInDefaults:city];
+            }
         }];
     }
     
