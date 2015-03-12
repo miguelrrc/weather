@@ -33,9 +33,6 @@
     [[MyLocationManager sharedController]setDelegate:self];
     
     
-   
-   
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -131,12 +128,18 @@
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];//Loading
         [self getDataFromLocation:locationString city:^(City *city) {
              NSLog(@"Ready to populate the controller");
-            [self populateController:city];
+            if(city){
+                [self populateController:city];
             
-            [self.imgLocation setHidden:NO];
+                [self.imgLocation setHidden:NO];
+            
+                [self saveCityInDefaults:city];
+            }else{
+                NSLog(@"Error retrieving data");
+            }
             
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];//Bye loading
-            [self saveCityInDefaults:city];
+            
            
             
         }];
