@@ -172,29 +172,20 @@
         if(city!=nil)//We have a city
         {
             cityToday=city;
-            
-           
+ 
             success(cityToday);
+            
             NSLog(@"Ready to populate the controller");
-//            if(self.cityID ==nil)//If CityID is not a city from the db;
-//                [self populateController:city];
+        
         }else
         {
             NSLog(@"Error retrieving the city");
-             success(nil);
-            if(self.cityID==nil){
-                UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"No connection" message:@"Error retrieving data from the server" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [alert show];
-            }
-            
+            success(nil);
+    
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"No connection" message:@"Error retrieving data from the server" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
             
         }
-//        if(self.cityID==nil)
-//        {
-//            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];//Bye loading
-//            
-//            
-//        }
     }];
 }
 
