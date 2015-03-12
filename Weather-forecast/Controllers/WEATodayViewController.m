@@ -56,7 +56,7 @@
         
         if(cityFromDB!=nil)
         {
-            self.lblCityAndCountry.text=[NSString stringWithFormat:@"%@, %@",cityFromDB.areaName,cityFromDB.country];//For this field we don't need data from the WS
+           
             
             [MBProgressHUD showHUDAddedTo:self.view animated:YES];//Loading
             
@@ -93,6 +93,7 @@
 -(void)populateController:(City *)city {
     
     //We use a category to get the temperature based on the Settings from the user
+     self.lblCityAndCountry.text=[NSString stringWithFormat:@"%@, %@",city.areaName,city.country];
     self.lblWeatherDescription.text=[NSString stringWithFormat:@"%@ | %@",[city.weather getTemperatureBasedOnScale],city.weather.weatherDesc];
     
     self.lblWeatherPrecipMM.text=[NSString stringWithFormat:@"%@ mm",city.weather.precipMM];
@@ -216,7 +217,7 @@
 }
 
 /**
- * Show an alert 
+ * Show an alert
  *
  */
 -(void)showAlertRetrievingDataFromServer{
