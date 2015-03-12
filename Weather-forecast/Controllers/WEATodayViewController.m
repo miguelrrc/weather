@@ -65,6 +65,9 @@
             [self getDataFromLocation:location city:^(City *city) {
                 if(city!=nil) {
                     [self populateController:city];
+                }else{
+                   
+                    [self showAlertRetrievingDataFromServer];
                 }
                  [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             }];
@@ -137,6 +140,7 @@
             
                 [self saveCityInDefaults:city];
             }else{
+                [self showAlertRetrievingDataFromServer];
                 NSLog(@"Error retrieving data");
             }
             
@@ -151,10 +155,14 @@
         //Get the data silently
         [self getDataFromLocation:locationString city:^(City *city) {
             NSLog(@"City from WS will not populate the controller");
+            
             if(city)
             {
                 [self saveCityInDefaults:city];
+            }else{
+                NSLog(@"Error retrieving data from the WS for My location");
             }
+        
         }];
     }
     
@@ -182,8 +190,7 @@
             NSLog(@"Error retrieving the city");
             success(nil);
     
-            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"No connection" message:@"Error retrieving data from the server" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
+           
             
         }
     }];
@@ -206,6 +213,17 @@
                              @"areaName":city.areaName,
                              @"country":city.country};
     [[NSUserDefaults standardUserDefaults] setObject:dictCity forKey:@"MyCity"];//Save in defaults for others views in case we need it.
+}
+
+/**
+ * Show an alert 
+ *
+ */
+-(void)showAlertRetrievingDataFromServer{
+    
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"No connection" message:@"Error retrieving data from the server" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+    
 }
 
 /**
